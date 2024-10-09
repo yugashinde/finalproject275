@@ -29,6 +29,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Yuga</p>
+        <p>Grace</p>
         <p>Shellie</p>
         <p>Madison</p>
         <p>
