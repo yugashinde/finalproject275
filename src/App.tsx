@@ -4,9 +4,9 @@ import './App.css';
 import { Button, Form } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import DetailedQuestion from "./DetailedQuestion";
-import SimpleQuestion from "./SimpleQuestion";
-import Header from "./Header";
+import DetailedQuestion from "./detailedquestions";
+import SimpleQuestion from "./simplequestions";
+import Header from "./HeaderComponent";
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
