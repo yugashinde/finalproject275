@@ -2,7 +2,7 @@
 //import {Question} from './Question';
 //import { Link } from 'react-router-dom';
 //import { useHistory } from 'react-router-dom';
-import Header from "./HeaderComponent";
+import Header from "../components/HeaderComponent";
 
 import React from 'react';
 const SimpleQuestions: React.FC = () => {
