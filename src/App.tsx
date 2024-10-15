@@ -3,6 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DetailedQuestion from "./DetailedQuestion";
+import SimpleQuestion from "./SimpleQuestion";
+import Header from "./Header";
+
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -28,9 +33,21 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        
-        
       </header>
+      <Router>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/detailed" element={<DetailedQuestion />} />
+          <Route path="/simple" element={<SimpleQuestion />} />
+        </Routes>
+      </div>
+    </Router>
+      
+
+
+    
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
