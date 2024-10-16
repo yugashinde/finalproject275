@@ -4,10 +4,10 @@ import './App.css';
 import { Button, Form } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import DetailedQuestion from "./detailedquestions";
-import SimpleQuestion from "./simplequestions";
-import Header from "./HeaderComponent";
-
+import DetailedQuestions from './pages/detailedquestions';
+import SimpleQuestions from './pages/simplequestions';
+import Header from './components/HeaderComponent';
+import { HomePage } from './pages/homepage';
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -31,16 +31,14 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      
       <Router>
       <div>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/detailed" element={<DetailedQuestion />} />
-          <Route path="/simple" element={<SimpleQuestion />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/simplequestions" element={<SimpleQuestions />} />
+          <Route path="/detailedquestions" element={<DetailedQuestions />} />
         </Routes>
       </div>
     </Router>
@@ -57,8 +55,6 @@ function App() {
     </div>
   );
 
-  //
-  
 }
 
 export default App;
