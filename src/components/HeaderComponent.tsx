@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   return (
     
-      <Button onClick={handleNavigateBack}>Back to Home</Button>
+      <Button onClick={handleNavigateBack}>Home</Button>
     
   );
 };
