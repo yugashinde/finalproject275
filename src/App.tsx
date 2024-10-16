@@ -30,36 +30,25 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <Router>
-      <Routes>
+    <><Router>
+      <div>
+        <NavigateSimpleButton />
+        <NavigateDetailedButton />
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/simplequestions" element={<SimpleQuestions />} />
+          <Route path="/detailedquestions" element={<DetailedQuestions />} />
         </Routes>
-      </Router>
-      <Router>
-        <Routes>
-          <Route path="/" element={<NavigateSimpleButton />} />
-          <Route path='/simplequestions' element={<SimpleQuestions />} /> 
-        </Routes>
-      </Router>
-      <Router>
-        <Routes>
-          <Route path="/" element={<NavigateDetailedButton />} />
-          <Route path='/detailedquestions' element={<DetailedQuestions />} /> 
-        </Routes>
-      </Router>
-      <Form>
+      </div>
+    </Router>
+    <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>
-    </div>
+      </Form></>
   );
 }
 
