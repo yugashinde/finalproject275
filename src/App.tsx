@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import DetailedQuestions from './pages/detailedquestions';
 import SimpleQuestions from './pages/simplequestions';
 import HomePage from './pages/homepage';
-import NavigateSimpleButton from './components/NavigateSimpleButton';
-import NavigateDetailedButton from './components/NavigateDetailedButton';
+
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -32,23 +30,21 @@ function App() {
   }
 
   return (
-    <><Router>
-      <div>
-        <NavigateSimpleButton />
-        <NavigateDetailedButton />
+    <div>
+      <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/simplequestions" element={<SimpleQuestions />} />
           <Route path="/detailedquestions" element={<DetailedQuestions />} />
         </Routes>
-      </div>
     </Router>
     <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form></>
+      </Form>
+    </div>
   );
 }
 
