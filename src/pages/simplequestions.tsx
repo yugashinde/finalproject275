@@ -2,7 +2,7 @@ import React from 'react';
 const SimpleQuestions: React.FC = () => {
     return (
         <div>
-          <h2>Simple Question</h2>
+          <h1>Simple Question</h1>
         </div>
       );
 
