@@ -1,4 +1,5 @@
 import React from 'react';
+
 const SimpleQuestions: React.FC = () => {
     return (
         <div>
@@ -9,3 +10,6 @@ const SimpleQuestions: React.FC = () => {
 };
 
 export default SimpleQuestions;
+
+
+
