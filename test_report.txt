@@ -26,7 +26,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (57 ms)
+  ✕ renders learn react link (60 ms)
 
   ● renders learn react link
 
@@ -35,45 +35,63 @@ FAIL src/App.test.tsx
     Ignored nodes: comments, script, style
     [36m<body>[39m
       [36m<div>[39m
-        [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
           [36m<div>[39m
-            [36m<h1>[39m
-              [0mWelcome to the Career Test![0m
-            [36m</h1>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
+            [36m<div>[39m
+              [36m<h1>[39m
+                [0mWelcome to the Career Test![0m
+              [36m</h1>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"text-box"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0mThe basic career assessment will assess your skills, interests, and preferences by presenting a series of straightforward questions with predefined answer options. Based on the selected answers, the test will provide recommendations for career paths that align with your strengths. The basic assessment is easy to complete, offering a quick overview of potential career matches without requiring in-depth analysis.[0m
+                [36m</p>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"btn btn-primary"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mSimple Questions Page[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"text-box"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0mThe detailed career assessment will assess your skills, interests, and preferences with a more nuanced and exploratory approach through a series of creative open-ended questions. By encouraging introspection and creative thinking, this type of test provides deeper insights into your unique talents, passions, and long-term professional goals, offering more personalized career recommendations based on your distinct characteristics.[0m
+                [36m</p>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"btn btn-primary"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mDetailed Questions Page[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<form[39m
+              [33mclass[39m=[32m""[39m
             [36m>[39m
-              [0mSimple Questions Page[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mDetailed Questions Page[0m
-            [36m</button>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+              [36m>[39m
+                [0mAPI Key:[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"form-control"[39m
+                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                [33mtype[39m=[32m"password"[39m
+              [36m/>[39m
+              [36m<br />[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mSubmit[0m
+              [36m</button>[39m
+            [36m</form>[39m
           [36m</div>[39m
-          [36m<form[39m
-            [33mclass[39m=[32m""[39m
-          [36m>[39m
-            [36m<label[39m
-              [33mclass[39m=[32m"form-label"[39m
-            [36m>[39m
-              [0mAPI Key:[0m
-            [36m</label>[39m
-            [36m<input[39m
-              [33mclass[39m=[32m"form-control"[39m
-              [33mplaceholder[39m=[32m"Insert API Key Here"[39m
-              [33mtype[39m=[32m"password"[39m
-            [36m/>[39m
-            [36m<br />[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mSubmit[0m
-            [36m</button>[39m
-          [36m</form>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -99,33 +117,24 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   48.64 |    16.66 |   33.33 |   48.64 |                   
+All files                    |   45.23 |    16.66 |   28.57 |   45.23 |                   
  src                         |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                    |      60 |       50 |   33.33 |      60 | 15,23-29          
+  App.tsx                    |      60 |       50 |   33.33 |      60 | 17,26-31          
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |      80 |      100 |      50 |      80 |                   
+ src/components              |      60 |      100 |   33.33 |      60 |                   
+  HeaderComponent.tsx        |      20 |      100 |       0 |      20 | 6-12              
   NavigateDetailedButton.tsx |      80 |      100 |      50 |      80 | 9                 
   NavigateSimpleButton.tsx   |      80 |      100 |      50 |      80 | 9                 
+ src/interfaces              |       0 |        0 |       0 |       0 |                   
+  Question.ts                |       0 |        0 |       0 |       0 |                   
  src/pages                   |   66.66 |      100 |   33.33 |   66.66 |                   
-  detailedquestions.tsx      |      50 |      100 |       0 |      50 | 4                 
+  detailedquestions.tsx      |      50 |      100 |       0 |      50 | 6                 
   homepage.tsx               |     100 |      100 |     100 |     100 |                   
-  simplequestions.tsx        |      50 |      100 |       0 |      50 | 4                 
+  simplequestions.tsx        |      50 |      100 |       0 |      50 | 5                 
 -----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.716 s
+Time:        2.403 s
 Ran all test suites.
-[0;33mOne of your dependencies, babel-preset-react-app, is importing the
-"@babel/plugin-proposal-private-property-in-object" package without
-declaring it in its dependencies. This is currently working because
-"@babel/plugin-proposal-private-property-in-object" is already in your
-node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
-
-babel-preset-react-app is part of the create-react-app project, [1mwhich
-is not maintianed anymore[0;33m. It is thus unlikely that this bug will
-ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
-your devDependencies to work around this error. This will make this message
-go away.[0m
-  
