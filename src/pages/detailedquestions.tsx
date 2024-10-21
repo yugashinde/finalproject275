@@ -4,7 +4,7 @@ import { Question } from '../interfaces/question';
 import {Form} from 'react-bootstrap'; 
 
 
-
+//took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
 const DetailedQuestions: React.FC = () => {
     
 const [questions, setQuestions] = useState<Question[]>([
