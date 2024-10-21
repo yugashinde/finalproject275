@@ -23,6 +23,7 @@ const SimpleQuestions: React.FC = () => {
             updatedQuestions[currQIndex].answer = selectedAnswer;
             return updatedQuestions;
         })
+        
     }
 
     const question = questions[currQIndex];
