@@ -34,12 +34,7 @@ function App() {
   return (
 
     <div className="App">
-      
-      <Router>
-      <div>
-        <Header />
-
-    <div>
+          <div>
       <Router>
 
         <Routes>
@@ -54,6 +49,7 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
+    </div>
     </div>
   );
 
