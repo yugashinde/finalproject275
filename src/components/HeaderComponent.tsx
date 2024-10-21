@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {Button} from 'react-bootstrap';
+import './buttonStyles.css';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Header: React.FC = () => {
 
   return (
     
-      <Button onClick={handleNavigateBack}>Home</Button>
+      <Button onClick={handleNavigateBack} className="custom-button">Home</Button>
     
   );
 };
