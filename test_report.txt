@@ -26,7 +26,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (60 ms)
+  ✕ renders learn react link (59 ms)
 
   ● renders learn react link
 
@@ -117,24 +117,24 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   45.23 |    16.66 |   28.57 |   45.23 |                   
+All files                    |   30.15 |    16.66 |      16 |   30.64 |                   
  src                         |   28.57 |    16.66 |      20 |   28.57 |                   
   App.tsx                    |      60 |       50 |   33.33 |      60 | 17,26-31          
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
  src/components              |      60 |      100 |   33.33 |      60 |                   
-  HeaderComponent.tsx        |      20 |      100 |       0 |      20 | 6-12              
+  HeaderComponent.tsx        |      20 |      100 |       0 |      20 | 7-13              
   NavigateDetailedButton.tsx |      80 |      100 |      50 |      80 | 9                 
   NavigateSimpleButton.tsx   |      80 |      100 |      50 |      80 | 9                 
  src/interfaces              |       0 |        0 |       0 |       0 |                   
   Question.ts                |       0 |        0 |       0 |       0 |                   
- src/pages                   |   66.66 |      100 |   33.33 |   66.66 |                   
-  detailedquestions.tsx      |      50 |      100 |       0 |      50 | 6                 
+ src/pages                   |   14.81 |      100 |    7.14 |   15.38 |                   
+  detailedquestions.tsx      |    9.09 |      100 |       0 |    9.09 | 12-48             
   homepage.tsx               |     100 |      100 |     100 |     100 |                   
-  simplequestions.tsx        |      50 |      100 |       0 |      50 | 5                 
+  simplequestions.tsx        |    7.14 |      100 |       0 |    7.69 | 13-64             
 -----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.403 s
+Time:        2.566 s
 Ran all test suites.
