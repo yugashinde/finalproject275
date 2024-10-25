@@ -3,7 +3,7 @@ import HeaderComponent from '../components/HeaderComponent'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form, Button} from 'react-bootstrap';
-
+import Feedback from '../components/feedback';
 
 
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
@@ -28,7 +28,6 @@ const updateAnswer = (input:number , value:string)=>{
        return updatedQuestions;
    })}
 
-
        return (
         <div>
           <HeaderComponent />
@@ -51,6 +50,7 @@ const updateAnswer = (input:number , value:string)=>{
                    ))} 
                </Form>
            </div>
+           <Feedback totalQuestions={7} ></Feedback>
            </div>
        )
 
