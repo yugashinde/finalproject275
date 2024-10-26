@@ -4,6 +4,7 @@ import HeaderComponent from '../components/HeaderComponent'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form, Button} from 'react-bootstrap';
+import './detailedquestions.css';
 
 
 
@@ -31,7 +32,7 @@ const updateAnswer = (input:number , value:string)=>{
 
 
        return (
-        <div>
+        <div className = 'detailedquestions'>
           <HeaderComponent />
           {/*<QuestionProgress totalQuestions={7} progress={currQIndex}/>*/}
           <h1>Detailed Question</h1>

@@ -3,6 +3,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import { Form } from 'react-bootstrap';
+import './simplequestions.css';
 
 const SimpleQuestions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([
@@ -29,11 +30,11 @@ const SimpleQuestions: React.FC = () => {
   const handleNext = () => {
     if (currQIndex < questions.length - 1) {
       setCurrQuestionIndex(prev => prev + 1);
-    }
+    }   
   };
 
   return (
-    <div>
+    <div className ='simplequestions'>
       <HeaderComponent />
       <QuestionProgress totalQuestions={7} progress={currQIndex} />
       <h1>Simple Question</h1>
@@ -59,8 +60,15 @@ const SimpleQuestions: React.FC = () => {
         </Form>
 
         <button
-          onClick={handleNext}
-          disabled={currQIndex === questions.length - 1}
+            disabled= {question.answer === ""}
+            onClick={handleNext}
+            style ={
+                { marginTop : 100,
+                marginBottom : 400,
+                backgroundColor : 'black',
+                color: 'white'
+            }}
+          
         >
           Next
         </button>
