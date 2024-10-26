@@ -1,6 +1,6 @@
 
 import HeaderComponent from '../components/HeaderComponent'
-//import QuestionProgress from '../components/QuestionProgress'
+import QuestionProgress from '../components/QuestionProgress'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form, Button} from 'react-bootstrap';
@@ -20,6 +20,13 @@ const [questions, setQuestions] = useState<Question[]>([
    {id : 7, name : "You’re given the chance to spend a week learning from any professional — who would it be, and what would you hope to gain from the experience?",options: [],answer:""},
 ])
 
+const [currQIndex, setCurrQuestionIndex] = useState(0);
+
+const handleNext = () => {
+    if (currQIndex < questions.length - 1) {
+      setCurrQuestionIndex(prev => prev + 1);
+    }
+  };
 
 
 const updateAnswer = (input:number , value:string)=>{
@@ -33,7 +40,7 @@ const updateAnswer = (input:number , value:string)=>{
        return (
         <div>
           <HeaderComponent />
-          {/*<QuestionProgress totalQuestions={7} progress={currQIndex}/>*/}
+          <QuestionProgress totalQuestions={7} progress={currQIndex}/>
           <h1>Detailed Question</h1>
            <div>
                <Form>
@@ -47,7 +54,7 @@ const updateAnswer = (input:number , value:string)=>{
                                onChange={(e) => updateAnswer(index, e.target.value)} />
                        </Form.Group><Button 
                        type="button" 
-                       onClick={() => console.log(question.answer)}>
+                       onClick={handleNext}>
                                Done
                            </Button></>
                    ))} 
