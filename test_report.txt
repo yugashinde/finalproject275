@@ -26,7 +26,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (67 ms)
+  ✕ renders learn react link (74 ms)
 
   ● renders learn react link
 
@@ -39,35 +39,76 @@ FAIL src/App.test.tsx
           [33mclass[39m=[32m"App"[39m
         [36m>[39m
           [36m<div>[39m
-            [36m<div>[39m
-              [36m<h1>[39m
-                [0mWelcome to the Career Test![0m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<h1[39m
+                [33mclass[39m=[32m"homepage-header"[39m
+              [36m>[39m
+                [0mWELCOME TO THE CAREER TEST[0m
               [36m</h1>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"text-box"[39m
+                [33mclass[39m=[32m"container"[39m
               [36m>[39m
-                [36m<p>[39m
-                  [0mThe basic career assessment will assess your skills, interests, and preferences by presenting a series of straightforward questions with predefined answer options. Based on the selected answers, the test will provide recommendations for career paths that align with your strengths. The basic assessment is easy to complete, offering a quick overview of potential career matches without requiring in-depth analysis.[0m
-                [36m</p>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"btn btn-primary"[39m
-                  [33mtype[39m=[32m"button"[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
                 [36m>[39m
-                  [0mSimple Questions Page[0m
-                [36m</button>[39m
-              [36m</div>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"text-box"[39m
-              [36m>[39m
-                [36m<p>[39m
-                  [0mThe detailed career assessment will assess your skills, interests, and preferences with a more nuanced and exploratory approach through a series of creative open-ended questions. By encouraging introspection and creative thinking, this type of test provides deeper insights into your unique talents, passions, and long-term professional goals, offering more personalized career recommendations based on your distinct characteristics.[0m
-                [36m</p>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"btn btn-primary"[39m
-                  [33mtype[39m=[32m"button"[39m
-                [36m>[39m
-                  [0mDetailed Questions Page[0m
-                [36m</button>[39m
+                  [0m [0m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"col-md-6"[39m
+                  [36m>[39m
+                    [0m [0m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"NavigateSimpleButton"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mSimple Questions Quiz[0m
+                      [36m</h2>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"text-box"[39m
+                      [36m>[39m
+                        [36m<p>[39m
+                          [0mThe basic career assessment will assess your skills, interests, and preferences by presenting a series of straightforward questions with predefined answer options. Based on the selected answers, the test will provide recommendations for career paths that align with your strengths. The basic assessment is easy to complete, offering a quick overview of potential career matches without requiring in-depth analysis.[0m
+                        [36m</p>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"btn btn-primary"[39m
+                          [33mstyle[39m=[32m"background-color: black;"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mSimple Questions Page[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [0m [0m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"col-md-6"[39m
+                  [36m>[39m
+                    [0m [0m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"NavigateDetailedButton"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mDetailed Questions Quiz[0m
+                      [36m</h2>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"text-box"[39m
+                      [36m>[39m
+                        [36m<p>[39m
+                          [0mThe detailed career assessment will assess your skills, interests, and preferences with a more nuanced and exploratory approach through a series of creative open-ended questions. By encouraging introspection and creative thinking, this type of test provides deeper insights into your unique talents, passions, and long-term professional goals, offering more personalized career recommendations based on your distinct characteristics.[0m
+                        [36m</p>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"btn btn-primary"[39m
+                          [33mstyle[39m=[32m"background-color: black;"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mDetailed Questions Page[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [0m [0m
+                  [36m</div>[39m
+                [36m</div>[39m
               [36m</div>[39m
             [36m</div>[39m
             [36m<form[39m
@@ -124,18 +165,18 @@ All files                    |   27.77 |       10 |   14.81 |   28.57 |
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
  src/components              |   55.55 |      100 |   28.57 |   55.55 |                   
   HeaderComponent.tsx        |      20 |      100 |       0 |      20 | 8-14              
-  NavigateDetailedButton.tsx |      80 |      100 |      50 |      80 | 9                 
-  NavigateSimpleButton.tsx   |      80 |      100 |      50 |      80 | 9                 
+  NavigateDetailedButton.tsx |      80 |      100 |      50 |      80 | 10                
+  NavigateSimpleButton.tsx   |      80 |      100 |      50 |      80 | 10                
   QuestionProgress.tsx       |   33.33 |      100 |       0 |   33.33 | 10-12             
  src/interfaces              |       0 |        0 |       0 |       0 |                   
   Question.ts                |       0 |        0 |       0 |       0 |                   
  src/pages                   |   12.12 |        0 |    6.66 |    12.9 |                   
-  detailedquestions.tsx      |    6.66 |        0 |       0 |    7.14 | 13-54             
+  detailedquestions.tsx      |    6.66 |        0 |       0 |    7.14 | 14-55             
   homepage.tsx               |     100 |      100 |     100 |     100 |                   
-  simplequestions.tsx        |    6.25 |        0 |       0 |    6.66 | 8-53              
+  simplequestions.tsx        |    6.25 |        0 |       0 |    6.66 | 9-54              
 -----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.511 s
+Time:        2.516 s
 Ran all test suites.
