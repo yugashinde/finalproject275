@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -21,7 +22,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
@@ -29,7 +30,7 @@
 }
 
 .text-box {
-  border: 2px solid #000;
+ 
   padding: 20px;
   display: inline-block;
 }
@@ -43,3 +44,4 @@
     transform: rotate(360deg);
   }
 }
+
