@@ -5,9 +5,7 @@ const Feedback: React.FC<{ totalQuestions: number; answeredQuestions: number }> 
 
     return (
         <div>
-            <h2>Quiz Progress</h2>
             <p>Questions answered: {answeredQuestions} / {totalQuestions}</p>
-
             {isComplete && (
                 <div className="completion-feedback">
                     🎉 You've completed all questions! 🎉

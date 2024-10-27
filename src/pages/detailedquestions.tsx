@@ -42,6 +42,7 @@ const DetailedQuestions: React.FC = () => {
             <h1>Detailed Question</h1>
             <div>
                 <Form>
+                <Feedback totalQuestions={questions.length} answeredQuestions={completedQuestions.length} />
                     {questions.map((question, index) => (
                         <Form.Group key={question.id}>
                             <label>Q{question.id} {question.name}</label>
@@ -61,7 +62,6 @@ const DetailedQuestions: React.FC = () => {
                     ))}
                 </Form>
             </div>
-            <Feedback totalQuestions={questions.length} answeredQuestions={completedQuestions.length} />
         </div>
     );
 };
