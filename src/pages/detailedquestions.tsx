@@ -1,7 +1,8 @@
 import HeaderComponent from '../components/HeaderComponent'
-import QuestionProgress from '../components/QuestionProgress'
+// import QuestionProgress from '../components/QuestionProgress'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
+import Feedback from '../components/feedback'
 import {Form, Button} from 'react-bootstrap';
 import './detailedquestions.css';
 
