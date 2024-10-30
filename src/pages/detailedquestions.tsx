@@ -57,16 +57,7 @@ const updateAnswer = (input:number , value:string)=>{
                        onClick={handleNext}>
                                Done
                            </Button></>
-                   ))} 
-               <button
-               onClick={()=>setCurrQuestionIndex(prev => prev+1 % questions.length)}
-               disabled = {currQIndex === questions.length-1}
-               >
-                   Submit
-               </button>
-
-
-                   
+                   ))}   
                </Form>
            </div>
            </div>

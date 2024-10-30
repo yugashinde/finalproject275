@@ -3,8 +3,9 @@ import HeaderComponent from '../components/HeaderComponent'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form} from 'react-bootstrap';
-import Feedback from '../components/feedback'
 import QuestionProgress from '../components/QuestionProgress';
+import Feedback from '../components/feedback'
+
 
 
 const SimpleQuestions: React.FC = () => {
@@ -70,13 +71,24 @@ const SimpleQuestions: React.FC = () => {
                            </label>
                        </div>
                    ))}
+                   {question.answer && <p> Your answer has been recorded! </p> }
                </Form>
                <button
                onClick={handleNext}
-               disabled={currQIndex === questions.length - 1}
+            //    disabled={currQIndex === questions.length - 1}
+            disabled= {question.answer === ""}
+            style ={
+                { marginTop : 100,
+                marginBottom : 400,
+                backgroundColor : 'black',
+                color: 'white'
+            }}   
                >
                    Next
                </button>
+               <button 
+        disabled = {question.id!==7}
+        > Submit </button>
            </div>
            {showPopup && (
                 <div className="popup-overlay">
