@@ -38,6 +38,7 @@ const SimpleQuestions: React.FC = () => {
     }
 
   };
+
   return (
     <div className ='simplequestions'>
       <HeaderComponent />
