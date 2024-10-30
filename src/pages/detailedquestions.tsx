@@ -1,8 +1,7 @@
 import HeaderComponent from '../components/HeaderComponent'
-// import QuestionProgress from '../components/QuestionProgress'
+import QuestionProgress from '../components/QuestionProgress'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
-import Feedback from '../components/feedback'
 import {Form, Button} from 'react-bootstrap';
 import './detailedquestions.css';
 
@@ -20,68 +19,60 @@ const DetailedQuestions: React.FC = () => {
         { id: 7, name: "You’re given the chance to spend a week learning from any professional — who would it be, and what would you hope to gain from the experience?", options: [], answer: "" },
     ]);
 
-    const [completedQuestions, setCompletedQuestions] = useState<number[]>([]);
-    const [showPopup, setShowPopup] = useState<boolean>(false);
+const [currQIndex, setCurrQuestionIndex] = useState(0);
 
-    const updateAnswer = (index: number, value: string) => {
-        setQuestions(prevQuestions => {
-            const updatedQuestions = [...prevQuestions];
-            updatedQuestions[index].answer = value;
-            return updatedQuestions;
-        });
-    };
+const handleNext = () => {
+    if (currQIndex < questions.length - 1) {
+      setCurrQuestionIndex(prev => prev + 1);
+    }
+  };
 
-    const handleDoneClick = (questionId: number) => {
-        setCompletedQuestions(prev => {
-            if (!prev.includes(questionId)) {
-                const newCompleted=[...prev, questionId];
-                if(newCompleted.length===questions.length){
-                    setShowPopup(true);
-                }
-                return newCompleted;
-            }
-            return prev;
-        });
-    };
 
-    return (
-        <div className={`detailed-questions-container ${showPopup ? 'blur' : ''}`}>
-            <HeaderComponent />
-            <h1>Detailed Questions</h1>
-            <div>
-                <Form>
-                    <Feedback totalQuestions={questions.length} answeredQuestions={completedQuestions.length} />
-                    {questions.map((question, index) => (
-                        <Form.Group key={question.id}>
-                            <label>Q{question.id} {question.name}</label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                value={question.answer}
-                                onChange={(e) => updateAnswer(index, e.target.value)}
-                            />
-                            <Button
-                                type="button"
-                                onClick={() => handleDoneClick(question.id)}
-                            >
-                                Done
-                            </Button>
-                        </Form.Group>
-                    ))}
-                </Form>
-            </div>
-
-            {showPopup && (
-                <div className="popup-overlay">
-                    <div className="popup-box">
-                        <p>You've completed all questions!</p>
-                        <Button onClick={() => setShowPopup(false)}>Okay</Button>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+const updateAnswer = (input:number , value:string)=>{
+   setQuestions(prevQuestions =>{
+       const updatedQuestions = [...prevQuestions]; 
+       updatedQuestions[input].answer = value;
+       return updatedQuestions;
+   });
 };
+
+
+       return (
+        <div>
+          <HeaderComponent />
+          <QuestionProgress totalQuestions={7} progress={currQIndex}/>
+          <h1>Detailed Question</h1>
+           <div>
+               <Form>
+                   {questions.map((question,index)=>(
+                       <><Form.Group key={question.id}>
+                           <label> Q{question.id} {question.name} </label>
+                           <Form.Control
+                               as="textarea"
+                               rows={3}
+                               value={question.answer}
+                               onChange={(e) => updateAnswer(index, e.target.value)} />
+                       </Form.Group><Button 
+                       type="button" 
+                       onClick={handleNext}>
+                               Done
+                           </Button></>
+                   ))} 
+               <button
+               onClick={()=>setCurrQuestionIndex(prev => prev+1 % questions.length)}
+               disabled = {currQIndex === questions.length-1}
+               >
+                   Submit
+               </button>
+
+
+                   
+               </Form>
+           </div>
+           </div>
+       );
+};
+
 export default DetailedQuestions;
 
 

@@ -3,6 +3,8 @@ import HeaderComponent from '../components/HeaderComponent'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form} from 'react-bootstrap';
+import Feedback from '../components/feedback'
+import QuestionProgress from '../components/QuestionProgress';
 
 
 const SimpleQuestions: React.FC = () => {
@@ -18,42 +20,50 @@ const SimpleQuestions: React.FC = () => {
        {id : 5, name : "I enjoy hands-on and physical activities versus more sedentary work.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'],answer:""},
        {id : 6, name : "I enjoy public speaking.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'], answer:""},
        {id : 7, name : "I enjoy working alone.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'],answer:""},
-   ])
+   ]);
     const [currQIndex, setCurrQuestionIndex] = useState(0);
-
+    const [showPopup, setShowPopup] = useState(false);
 
    const updateAnswer= (selectedAnswer : string)=>{
        setQuestions(prevQuestions =>{
            const updatedQuestions = [...prevQuestions];
            updatedQuestions[currQIndex].answer = selectedAnswer;
            return updatedQuestions;
-       })
-   }
-   //
+       });
+       if (currQIndex === questions.length - 1) {
+        // Show the popup immediately since the last question is answered
+        setShowPopup(true);
+    } 
+   };
+   
    const question= questions[currQIndex];
+
    const handleNext = () => {
     if (currQIndex < questions.length - 1) {
       setCurrQuestionIndex(prev => prev + 1);
+      //setShowPopup(false);
     }
+    //
   };
-       return (
 
+       return (
         <div>
           <HeaderComponent />
+          <QuestionProgress totalQuestions={7} progress={currQIndex} />
           <h1>Simple Question</h1>
-        
+          <Feedback totalQuestions={questions.length} answeredQuestions={currQIndex} />
            <div>
                <h2>Q{question.id}  {question.name} </h2>
-              
+               
                <Form>
-                   {question.options.map((Option,index) => (
+               {question.options.map((Option, index) => (
                        <div key = {index}>
                            <label>
                                <input
                                type = "radio"
                                name = {question.name}
                                value = {Option}
-                               checked = {question.answer === Option}
+                               checked={question.answer === Option}
                                onChange={()=> updateAnswer(Option)}
                                />
                                {Option}
@@ -61,8 +71,6 @@ const SimpleQuestions: React.FC = () => {
                        </div>
                    ))}
                </Form>
-
-
                <button
                onClick={handleNext}
                disabled={currQIndex === questions.length - 1}
@@ -70,10 +78,17 @@ const SimpleQuestions: React.FC = () => {
                    Next
                </button>
            </div>
+           {showPopup && (
+                <div className="popup-overlay">
+                    <div className="popup-box">
+                        <p>You've completed all questions!</p>
+                        <button onClick={() => setShowPopup(false)}>Okay</button>
+                    </div>
+                </div>
+            )}
            </div>
-       )
-  
-}
+       );
+};
 
 export default SimpleQuestions;
 
