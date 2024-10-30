@@ -5,10 +5,6 @@
     position: relative;
 }
 
-.detailed-questions-content.blur {
-    filter: blur(80%);
-}
-
 .popup-overlay {
     position: fixed;
     top: 0;
