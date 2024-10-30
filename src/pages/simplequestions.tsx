@@ -29,9 +29,9 @@ const SimpleQuestions: React.FC = () => {
 
   const handleNext = () => {
     
-    if (currQIndex < questions.length - 1) {
+    if (currQIndex <questions.length-1) {
       setCurrQuestionIndex(prev => prev + 1);
-    }   
+    } 
   };
 
   return (
@@ -41,7 +41,8 @@ const SimpleQuestions: React.FC = () => {
       <h1>Simple Question</h1>
 
       <div>
-        <h2>Q{question.id}  {question.name} </h2>
+        <h2>Q{question.id}  </h2>
+        <h4>{question.name}</h4>
 
         <Form>
           {question.options.map((Option, index) => (
@@ -61,8 +62,7 @@ const SimpleQuestions: React.FC = () => {
               
             </div>
           ))}
-          {}
-          {}
+          
           {question.answer && <p> Your answer has been recorded! </p> }
         </Form> 
         
@@ -82,6 +82,11 @@ const SimpleQuestions: React.FC = () => {
         >
           Next
         </button>
+
+        <button 
+        disabled = {question.id!==7}
+        > Submit </button>
+
       </div>
     </div>
   );
