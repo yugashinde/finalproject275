@@ -77,6 +77,7 @@ const SimpleQuestions: React.FC = () => {
                onClick={handleNext}
             //    disabled={currQIndex === questions.length - 1}
             disabled= {question.answer === ""}
+
             style ={
                 { marginTop : 100,
                 marginBottom : 400,
@@ -100,6 +101,7 @@ const SimpleQuestions: React.FC = () => {
             )}
            </div>
        );
+
 };
 
 export default SimpleQuestions;
