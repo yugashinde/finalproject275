@@ -37,7 +37,7 @@ const SimpleQuestions: React.FC = () => {
     }
 
   };
-       return (
+      
 
   return (
     <div className ='simplequestions'>
@@ -100,7 +100,6 @@ const SimpleQuestions: React.FC = () => {
         
           
   
-}
 
 export default SimpleQuestions;
 
