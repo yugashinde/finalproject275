@@ -28,6 +28,7 @@ const SimpleQuestions: React.FC = () => {
   const question = questions[currQIndex];
 
   const handleNext = () => {
+    
     if (currQIndex < questions.length - 1) {
       setCurrQuestionIndex(prev => prev + 1);
     }   
@@ -51,14 +52,23 @@ const SimpleQuestions: React.FC = () => {
                   name={question.name}
                   value={Option}
                   checked={question.answer === Option}
+                  
                   onChange={() => updateAnswer(Option)}
                 />
                 {Option}
+                
               </label>
+              
             </div>
           ))}
-        </Form>
-
+          {}
+          {}
+          {question.answer && <p> Your answer has been recorded! </p> }
+        </Form> 
+        
+          
+        
+      
         <button
             disabled= {question.answer === ""}
             onClick={handleNext}
