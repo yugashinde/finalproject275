@@ -35,43 +35,70 @@ const SimpleQuestions: React.FC = () => {
     if (currQIndex < questions.length - 1) {
       setCurrQuestionIndex(prev => prev + 1);
     }
+
   };
        return (
 
-        <div>
-          <HeaderComponent />
-          <h1>Simple Question</h1>
-        
-           <div>
-               <h2>Q{question.id}  {question.name} </h2>
+  return (
+    <div className ='simplequestions'>
+      <HeaderComponent />
+      <QuestionProgress totalQuestions={7} progress={currQIndex} />
+      <h1>Simple Question</h1>
+
+      <div>
+        <h2>Q{question.id}  </h2>
+        <h4>{question.name}</h4>
+
+        <Form>
+          {question.options.map((Option, index) => (
+            <div key={index}>
+              <label>
+                <input
+                  type="radio"
+                  name={question.name}
+                  value={Option}
+                  checked={question.answer === Option}
+                  
+                  onChange={() => updateAnswer(Option)}
+                />
+                {Option}
+                
+              </label>
               
-               <Form>
-                   {question.options.map((Option,index) => (
-                       <div key = {index}>
-                           <label>
-                               <input
-                               type = "radio"
-                               name = {question.name}
-                               value = {Option}
-                               checked = {question.answer === Option}
-                               onChange={()=> updateAnswer(Option)}
-                               />
-                               {Option}
-                           </label>
-                       </div>
-                   ))}
-               </Form>
+            </div>
+          ))}
+          
+          {question.answer && <p> Your answer has been recorded! </p> }
+        </Form> 
+        
+          
+        
+      
+        <button
+            disabled= {question.answer === ""}
+            onClick={handleNext}
+            style ={
+                { marginTop : 100,
+                marginBottom : 400,
+                backgroundColor : 'black',
+                color: 'white'
+            }}
+          
+        >
+          Next
+        </button>
 
+        <button 
+        disabled = {question.id!==7}
+        > Submit </button>
 
-               <button
-               onClick={handleNext}
-               disabled={currQIndex === questions.length - 1}
-               >
-                   Next
-               </button>
-           </div>
-           </div>
-       )
+      </div>
+    </div>
+  );
+};
+
+        
+          
   
 }
 
