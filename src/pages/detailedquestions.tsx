@@ -9,6 +9,7 @@ import {Form, Button} from 'react-bootstrap';
 
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
 const DetailedQuestions: React.FC = () => {
+
   
 const [questions, setQuestions] = useState<Question[]>([
    {id : 1, name : "Imagine you could teach a class on any skill or topic — what would it be, and what makes you the expert?", options: [], answer:""},
@@ -34,7 +35,8 @@ const updateAnswer = (input:number , value:string)=>{
        const updatedQuestions = [...prevQuestions]; 
        updatedQuestions[input].answer = value;
        return updatedQuestions;
-   })}
+   });
+};
 
 
        return (
@@ -57,12 +59,14 @@ const updateAnswer = (input:number , value:string)=>{
                        onClick={handleNext}>
                                Done
                            </Button></>
-                   ))} 
+                   ))}   
                </Form>
            </div>
            </div>
-       )
-}
+       );
+};
+
+
 
 export default DetailedQuestions;
 
