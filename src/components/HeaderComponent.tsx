@@ -12,9 +12,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    
       <Button onClick={handleNavigateBack} className="custom-button">Home</Button>
-    
   );
 };
 

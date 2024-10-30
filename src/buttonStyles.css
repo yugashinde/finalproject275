@@ -1,11 +1,33 @@
 .custom-button {
+
     background-color: rgb(148, 0, 72);
     color: white;
     border: none;
     padding: 6px 10px;
     border-radius: 8px;
     cursor: pointer;
+
   }
   .custom-button:hover {
-    background-color: rgb(62, 6, 84);
+    background-image: linear-gradient(to right, #5f58e4, #5fdfff); 
   }
+  body {
+    background-color: rgb(173, 217, 230); 
+}
+
+
+
+/* .text-box{
+  position:fixed;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  text-align: center;
+  padding:10px;
+  background-color:#cee8f8;
+}
+
+.text-box p{
+  font-size:12px;
+} */
