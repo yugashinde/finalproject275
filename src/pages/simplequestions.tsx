@@ -3,6 +3,7 @@ import HeaderComponent from '../components/HeaderComponent'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form} from 'react-bootstrap';
+import QuestionProgress from '../components/QuestionProgress';
 
 
 const SimpleQuestions: React.FC = () => {
@@ -37,7 +38,6 @@ const SimpleQuestions: React.FC = () => {
     }
 
   };
-      
 
   return (
     <div className ='simplequestions'>
@@ -96,10 +96,6 @@ const SimpleQuestions: React.FC = () => {
     </div>
   );
 };
-
-        
-          
-  
 
 export default SimpleQuestions;
 
