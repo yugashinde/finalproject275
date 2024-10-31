@@ -1,6 +1,6 @@
 
 import HeaderComponent from '../components/HeaderComponent'
-import React, { useState, useEffect} from 'react';
+import React, { useState} from 'react';
 import { Question } from '../interfaces/Question';
 import {Form} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
@@ -28,27 +28,21 @@ const SimpleQuestions: React.FC = () => {
 
    const updateAnswer= (selectedAnswer : string)=>{
        setQuestions(prevQuestions =>{
-           const updatedQuestions = [...prevQuestions];
-        //    
+           const updatedQuestions = [...prevQuestions];    
         if (updatedQuestions[currQIndex].answer === "") {
             // Increment answered count only if this is the first answer
             setAnsweredQuestionsCount(prevCount => prevCount + 1);
         }
         updatedQuestions[currQIndex].answer = selectedAnswer;
         return updatedQuestions;
+        
        });
+       if (questions.every(q => q.answer !== "")) {
+        setShowPopup(true); // Show popup if all questions are answered
+    }
        
-    }; 
-    useEffect(() => {
-        const allAnswered = questions.every(q => q.answer !== "");
-        if (allAnswered) {
-            setShowPopup(true);
-        }
-    }, [questions]);  
-   
-   
-   
-   
+}; 
+     
    const question= questions[currQIndex];
 
    const handleNext = () => {
@@ -87,8 +81,7 @@ const SimpleQuestions: React.FC = () => {
                </Form>
                <button
                onClick={handleNext}
-            disabled= {question.answer === ""}
-            //disabled={currQIndex !== questions.length - 1}
+            disabled= {question.answer === ""  }
             style ={
                 { marginTop : 100,
                 marginBottom : 400,
