@@ -26,14 +26,7 @@ const [currQIndex, setCurrQuestionIndex] = useState(0);
 const [showPopup, setShowPopup] = useState(false);
 const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
 
-// const handleNext = () => {
-//     if (currQIndex < questions.length - 1) {
-//       setCurrQuestionIndex(prev => prev + 1);
-//       setShowPopup(false);
-//     }
-//   };
 const handleNext = () => {
-    // If the current question has an answer and was previously unanswered, increment count
     if (questions[currQIndex].answer !== "") {
         setAnsweredQuestionsCount(prevCount => prevCount + 1);
     }
