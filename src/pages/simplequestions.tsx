@@ -30,14 +30,12 @@ const SimpleQuestions: React.FC = () => {
     setQuestions(prevQuestions => {
         const updatedQuestions = [...prevQuestions];
         if (updatedQuestions[currQIndex].answer === "") {
-            // Increment count only if the question is being answered for the first time
             setAnsweredQuestionsCount(prevCount => prevCount + 1);
         }
         updatedQuestions[currQIndex].answer = selectedAnswer;
         return updatedQuestions;
     });
     
-    // Show popup if all questions are answered
     if (answeredQuestionsCount + 1 === questions.length) {
         setShowPopup(true);
     }
