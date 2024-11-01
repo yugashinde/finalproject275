@@ -23,7 +23,7 @@ const [questions, setQuestions] = useState<Question[]>([
 const [currQIndex, setCurrQuestionIndex] = useState(0);
 
 const handleNext = () => {
-    if (currQIndex < questions.length - 1) {
+    if (currQIndex < questions.length) {
       setCurrQuestionIndex(prev => prev + 1);
     }
   };
@@ -40,8 +40,8 @@ const updateAnswer = (input:number , value:string)=>{
        return (
         <div>
           <HeaderComponent />
-          <QuestionProgress totalQuestions={7} progress={currQIndex+1}/>
-          <h1>Detailed Question</h1>
+          <QuestionProgress totalQuestions={7} progress={currQIndex}/>
+          <h1>Detailed Questions</h1>
            <div>
                <Form>
                    {questions.map((question,index)=>(

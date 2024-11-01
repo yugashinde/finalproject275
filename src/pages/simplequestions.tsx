@@ -42,7 +42,7 @@ const SimpleQuestions: React.FC = () => {
     <div className ='simplequestions'>
       <HeaderComponent />
       <QuestionProgress totalQuestions={7} progress={currQIndex} />
-      <h1>Simple Question</h1>
+      <h1>Simple Questions</h1>
 
       <div>
         <h2>Q{question.id}  </h2>
