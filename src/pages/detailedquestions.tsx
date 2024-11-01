@@ -4,11 +4,13 @@ import QuestionProgress from '../components/QuestionProgress'
 import React, { useState } from 'react';
 import { Question } from '../interfaces/Question';
 import {Form, Button} from 'react-bootstrap';
-
+import Feedback from '../components/feedback';
+import './detailedquestions.css';
 
 
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
 const DetailedQuestions: React.FC = () => {
+
   
 const [questions, setQuestions] = useState<Question[]>([
    {id : 1, name : "Imagine you could teach a class on any skill or topic — what would it be, and what makes you the expert?", options: [], answer:""},
@@ -21,27 +23,47 @@ const [questions, setQuestions] = useState<Question[]>([
 ])
 
 const [currQIndex, setCurrQuestionIndex] = useState(0);
+const [showPopup, setShowPopup] = useState(false);
+const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
 
 const handleNext = () => {
+<<<<<<< HEAD
     if (currQIndex < questions.length) {
       setCurrQuestionIndex(prev => prev + 1);
+=======
+    if (questions[currQIndex].answer !== "") {
+        setAnsweredQuestionsCount(prevCount => prevCount + 1);
+>>>>>>> 2572b827438faf0f0b568f8385a312299fc31b7d
     }
-  };
 
+    if (currQIndex === questions.length - 1) {
+        setShowPopup(true);
+    } else {
+        setCurrQuestionIndex(prev => prev + 1);
+        setShowPopup(false);
+    }
+};
 
 const updateAnswer = (input:number , value:string)=>{
-   setQuestions(prevQuestions =>{
-       const updatedQuestions = [...prevQuestions]; 
-       updatedQuestions[input].answer = value;
-       return updatedQuestions;
-   })}
+    setQuestions(prevQuestions => {
+        const updatedQuestions = [...prevQuestions];
+        updatedQuestions[input].answer = value;
+        return updatedQuestions;
+    });
+};
 
 
        return (
         <div>
           <HeaderComponent />
+<<<<<<< HEAD
           <QuestionProgress totalQuestions={7} progress={currQIndex}/>
           <h1>Detailed Questions</h1>
+=======
+          <QuestionProgress totalQuestions={7} progress={currQIndex+1}/>
+          <h1>Detailed Question</h1>
+          <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount}/>
+>>>>>>> 2572b827438faf0f0b568f8385a312299fc31b7d
            <div>
                <Form>
                    {questions.map((question,index)=>(
@@ -57,12 +79,22 @@ const updateAnswer = (input:number , value:string)=>{
                        onClick={handleNext}>
                                Done
                            </Button></>
-                   ))} 
+                   ))}   
                </Form>
            </div>
+           {showPopup && (
+                <div className="popup-overlay">
+                    <div className="popup-box">
+                        <p>You've completed all questions!</p>
+                        <button onClick={() => setShowPopup(false)}>Okay</button>
+                    </div>
+                </div>
+            )}
            </div>
-       )
-}
+       );
+};
+
+
 
 export default DetailedQuestions;
 
