@@ -3,7 +3,7 @@ import { ProgressBar } from 'react-bootstrap';
 
 interface QuestionProgressProps {
   totalQuestions: number;
-  progress: number; // Add this line to define the progress prop
+  progress: number; 
 }
 
 const QuestionProgress: React.FC<QuestionProgressProps> = ({ totalQuestions, progress }) => {
