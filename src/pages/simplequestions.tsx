@@ -4,8 +4,10 @@ import React, { useState} from 'react';
 import { Question } from '../interfaces/Question';
 import {Form} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
+
 import Feedback from '../components/feedback'
 import './simplequestions.css';
+
 
 
 const SimpleQuestions: React.FC = () => {
@@ -51,6 +53,7 @@ const SimpleQuestions: React.FC = () => {
     }
     
   };
+
 
        return (
         <div>
@@ -106,6 +109,7 @@ const SimpleQuestions: React.FC = () => {
        );
 
 };
+
 
 export default SimpleQuestions;
 
