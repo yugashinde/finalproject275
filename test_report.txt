@@ -1,0 +1,191 @@
+
+> starter_helpi@0.1.0 test
+> react-scripts test --coverage
+
+  console.error
+    Warning: `ReactDOMTestUtils.act` is deprecated in favor of `React.act`. Import `act` from `react` instead of `react-dom/test-utils`. See https://react.dev/warnings/react-dom-test-utils for more info.
+
+      4 |
+      5 | test('renders learn react link', () => {
+    > 6 |   render(<App />);
+        |         ^
+      7 |   const linkElement = screen.getByText(/learn react/i);
+      8 |   expect(linkElement).toBeInTheDocument();
+      9 | });
+
+      at printWarning (node_modules/react-dom/cjs/react-dom-test-utils.development.js:71:30)
+      at error (node_modules/react-dom/cjs/react-dom-test-utils.development.js:45:7)
+      at actWithWarning (node_modules/react-dom/cjs/react-dom-test-utils.development.js:1736:7)
+      at node_modules/@testing-library/react/dist/act-compat.js:63:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:159:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:246:10)
+      at Object.<anonymous> (src/App.test.tsx:6:9)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+FAIL src/App.test.tsx
+  ✕ renders learn react link (100 ms)
+
+  ● renders learn react link
+
+    TestingLibraryElementError: Unable to find an element with the text: /learn react/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<h1[39m
+                [33mclass[39m=[32m"homepage-header"[39m
+              [36m>[39m
+                [0mWELCOME TO THE CAREER TEST[0m
+              [36m</h1>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"container"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                [36m>[39m
+                  [0m [0m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"col-md-6"[39m
+                  [36m>[39m
+                    [0m [0m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"NavigateSimpleButton"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mSimple Questions Quiz[0m
+                      [36m</h2>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"text-box"[39m
+                      [36m>[39m
+                        [36m<p>[39m
+                          [0mThe basic career assessment will assess your skills, interests, and preferences by presenting a series of straightforward questions with predefined answer options. Based on the selected answers, the test will provide recommendations for career paths that align with your strengths. The basic assessment is easy to complete, offering a quick overview of potential career matches without requiring in-depth analysis.[0m
+                        [36m</p>[39m
+                        [36m<a[39m
+                          [33mhref[39m=[32m"#/simplequestions"[39m
+                        [36m>[39m
+                          [36m<button[39m
+                            [33mclass[39m=[32m"btn btn-primary"[39m
+                            [33mstyle[39m=[32m"background-color: black;"[39m
+                            [33mtype[39m=[32m"button"[39m
+                          [36m>[39m
+                            [0mSimple Questions Page[0m
+                          [36m</button>[39m
+                        [36m</a>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [0m [0m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"col-md-6"[39m
+                  [36m>[39m
+                    [0m [0m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"NavigateDetailedButton"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mDetailed Questions Quiz[0m
+                      [36m</h2>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"text-box"[39m
+                      [36m>[39m
+                        [36m<p>[39m
+                          [0mThe detailed career assessment will assess your skills, interests, and preferences with a more nuanced and exploratory approach through a series of creative open-ended questions. By encouraging introspection and creative thinking, this type of test provides deeper insights into your unique talents, passions, and long-term professional goals, offering more personalized career recommendations based on your distinct characteristics.[0m
+                        [36m</p>[39m
+                        [36m<a[39m
+                          [33mhref[39m=[32m"#/detailedquestions"[39m
+                        [36m>[39m
+                          [36m<button[39m
+                            [33mclass[39m=[32m"btn btn-primary"[39m
+                            [33mstyle[39m=[32m"background-color: black;"[39m
+                            [33mtype[39m=[32m"button"[39m
+                          [36m>[39m
+                            [0mDetailed Questions Page[0m
+                          [36m</button>[39m
+                        [36m</a>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [0m [0m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<form[39m
+              [33mclass[39m=[32m""[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+              [36m>[39m
+                [0mAPI Key:[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"form-control"[39m
+                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                [33mtype[39m=[32m"password"[39m
+              [36m/>[39m
+              [36m<br />[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mSubmit[0m
+              [36m</button>[39m
+            [36m</form>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+       5 | test('renders learn react link', () => {
+       6 |   render(<App />);
+    >  7 |   const linkElement = screen.getByText(/learn react/i);
+         |                              ^
+       8 |   expect(linkElement).toBeInTheDocument();
+       9 | });
+      10 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:7:30)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |   20.48 |     4.16 |   13.79 |   21.51 |                   
+ src                         |   28.57 |    16.66 |      20 |   28.57 |                   
+  App.tsx                    |      60 |       50 |   33.33 |      60 | 17,26-31          
+  index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
+ src/components              |   58.33 |        0 |      40 |   58.33 |                   
+  HeaderComponent.tsx        |      50 |      100 |       0 |      50 | 7                 
+  NavigateDetailedButton.tsx |     100 |      100 |     100 |     100 |                   
+  NavigateSimpleButton.tsx   |     100 |      100 |     100 |     100 |                   
+  QuestionProgress.tsx       |   33.33 |      100 |       0 |   33.33 | 10-12             
+  feedback.tsx               |   33.33 |        0 |       0 |   33.33 | 4-6               
+ src/interfaces              |       0 |        0 |       0 |       0 |                   
+  Question.ts                |       0 |        0 |       0 |       0 |                   
+ src/pages                   |       8 |        0 |    5.26 |    8.69 |                   
+  detailedquestions.tsx      |    4.34 |        0 |       0 |    4.76 | 15-79             
+  homepage.tsx               |     100 |      100 |     100 |     100 |                   
+  simplequestions.tsx        |       4 |        0 |       0 |    4.34 | 18-104            
+-----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.598 s
+Ran all test suites.
