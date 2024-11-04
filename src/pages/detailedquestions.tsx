@@ -27,13 +27,8 @@ const [showPopup, setShowPopup] = useState(false);
 const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
 
 const handleNext = () => {
-<<<<<<< HEAD
-    if (currQIndex < questions.length) {
-      setCurrQuestionIndex(prev => prev + 1);
-=======
     if (questions[currQIndex].answer !== "") {
         setAnsweredQuestionsCount(prevCount => prevCount + 1);
->>>>>>> 2572b827438faf0f0b568f8385a312299fc31b7d
     }
 
     if (currQIndex === questions.length - 1) {
@@ -56,14 +51,9 @@ const updateAnswer = (input:number , value:string)=>{
        return (
         <div>
           <HeaderComponent />
-<<<<<<< HEAD
-          <QuestionProgress totalQuestions={7} progress={currQIndex}/>
-          <h1>Detailed Questions</h1>
-=======
           <QuestionProgress totalQuestions={7} progress={currQIndex+1}/>
           <h1>Detailed Question</h1>
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount}/>
->>>>>>> 2572b827438faf0f0b568f8385a312299fc31b7d
            <div>
                <Form>
                    {questions.map((question,index)=>(
