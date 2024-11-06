@@ -5,6 +5,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
+import { Link } from 'react-router-dom';
 
 const DetailedQuestions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([
@@ -61,6 +62,11 @@ const DetailedQuestions: React.FC = () => {
         <Button type="button" onClick={handleNext}>
           Done
         </Button>
+        <Link to="/detailedesults">
+          <Button style={{ backgroundColor: 'black' }}>
+            Submit
+          </Button>
+        </Link>
       </Form>
 
       {showPopup && (
