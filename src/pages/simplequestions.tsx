@@ -6,6 +6,7 @@ import {Form} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
+import { Link } from 'react-router-dom';
 
 
 const SimpleQuestions: React.FC = () => {
@@ -90,9 +91,12 @@ const SimpleQuestions: React.FC = () => {
                >
                    Next
                </button>
-               <button 
-        disabled = {currQIndex !== questions.length - 1}
-        > Submit </button>
+               <Link to="/simpleresults">
+                    <button style={{ backgroundColor: 'black' }}>
+                        Submit
+                        disabled = {currQIndex !== questions.length - 1}
+                    </button>
+                </Link>
            </div>
            {showPopup && (
                 <div className="popup-overlay">
