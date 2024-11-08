@@ -34,3 +34,16 @@
     font-size: 18px;
 }
 
+.radio-buttons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px; 
+    margin-left:300px;
+}
+.radio-buttons label{
+    display: flex;
+    align-items: center;
+}
+.radio-buttons input{
+    margin-right: 6px;
+}
