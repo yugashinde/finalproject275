@@ -66,7 +66,7 @@ const SimpleQuestions: React.FC = () => {
                
                <Form>
                {question.options.map((Option, index) => (
-                       <div key = {index}>
+                       <div key = {index} className="radio-buttons">
                            <label>
                                <input
                                type = "radio"
