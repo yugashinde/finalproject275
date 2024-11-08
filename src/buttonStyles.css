@@ -15,23 +15,9 @@
     box-shadow: 0 8px 20px rgba(0, 102, 153, 0.3); 
   }
 
-  body {
-    background-color: rgb(173, 217, 230); 
-}
-
-
-
-/* .text-box{
-  position:fixed;
-  bottom:100px;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  text-align: center;
-  padding:10px;
-  background-color:#cee8f8;
-}
-
-.text-box p{
-  font-size:12px;
+  /* body {
+    background-color: rgb(7, 28, 35); 
 } */
+
+
+

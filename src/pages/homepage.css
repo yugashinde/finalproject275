@@ -1,9 +1,30 @@
-.homepage{
-    background-color: rgb(244, 136, 201);
-    
-}
-
-.homepage-header{
+/* .homepage-header{
     color: rgb(0, 0, 0);
     padding-top: 50px;
-}
+} */
+
+
+.homepage {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Ensure video is behind the content */
+  }
+  
+  .homepage-header {
+    position: relative;
+    z-index: 1;
+    color: white; /* Or any other color to contrast with the video */
+    text-align: center;
+  }
+  
+
+  

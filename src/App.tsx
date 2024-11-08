@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
-
 import { HashRouter as Router, Routes, Route} from 'react-router-dom';
 import DetailedQuestions from './pages/detailedquestions';
 import SimpleQuestions from './pages/simplequestions';
