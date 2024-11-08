@@ -37,8 +37,8 @@
 .radio-buttons{
     display: flex;
     align-items: center;
-    margin-bottom: 4px; 
-    margin-left:290px;
+    margin-bottom: 3px; 
+    margin-left:300px;
 }
 .radio-buttons label{
     display: flex;
