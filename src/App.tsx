@@ -5,6 +5,8 @@ import { Button, Form } from 'react-bootstrap';
 import { HashRouter as Router, Routes, Route} from 'react-router-dom';
 import DetailedQuestions from './pages/detailedquestions';
 import SimpleQuestions from './pages/simplequestions';
+import SimpleResults from './pages/simpleresults'
+import DetailedResults from './pages/detailedresults'
 import HomePage from './pages/homepage';
 
 
@@ -41,6 +43,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/simplequestions" element={<SimpleQuestions />} />
           <Route path="/detailedquestions" element={<DetailedQuestions />} />
+          <Route path="/detailedquestions/detailedresults" element={<DetailedResults />} />
+          <Route path="/simplequestions/simpleresults" element={<SimpleResults />} />
         </Routes>
     </Router>
     <Form>

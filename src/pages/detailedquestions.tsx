@@ -5,6 +5,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
+import { Link } from 'react-router-dom';
 
 const DetailedQuestions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([
@@ -44,7 +45,7 @@ const DetailedQuestions: React.FC = () => {
   return (
     <div>
       <HeaderComponent />
-      <QuestionProgress totalQuestions={questions.length} progress={currQIndex} />
+      <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
       <h1>Detailed Question</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
@@ -61,6 +62,11 @@ const DetailedQuestions: React.FC = () => {
         <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === ""}>
           Done
         </Button>
+        <Link to="/detailedesults">
+          <Button style={{ backgroundColor: 'blue' }} disabled= {currQIndex !== questions.length-1}>
+            Submit
+          </Button>
+        </Link>
       </Form>
 
       {showPopup && (

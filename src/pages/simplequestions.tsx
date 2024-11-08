@@ -7,6 +7,7 @@ import QuestionProgress from '../components/QuestionProgress';
 
 import Feedback from '../components/feedback'
 import './simplequestions.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -58,7 +59,7 @@ const SimpleQuestions: React.FC = () => {
        return (
         <div>
           <HeaderComponent />
-          <QuestionProgress totalQuestions={7} progress={currQIndex} />
+          <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
           <h1>Simple Question</h1>
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
            <div>
@@ -95,9 +96,11 @@ const SimpleQuestions: React.FC = () => {
                >
                    Next
                </button>
-               <button 
-                    disabled = {currQIndex !== questions.length - 1}   
-                > Submit </button>
+               <Link to="/simpleresults">
+                    <button style={{ backgroundColor: 'white' }} disabled = {currQIndex !== questions.length - 1}>
+                        Submit
+                    </button>
+                </Link>
            </div>
            {showPopup && (
                 <div className="popup-overlay">
