@@ -97,9 +97,8 @@ const SimpleQuestions: React.FC = () => {
                    Next
                </button>
                <Link to="/simpleresults">
-                    <button style={{ backgroundColor: 'black' }}>
+                    <button style={{ backgroundColor: 'white' }} disabled = {currQIndex !== questions.length - 1}>
                         Submit
-                        disabled = {currQIndex !== questions.length - 1}
                     </button>
                 </Link>
            </div>

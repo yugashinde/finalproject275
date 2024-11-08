@@ -63,7 +63,7 @@ const DetailedQuestions: React.FC = () => {
           Done
         </Button>
         <Link to="/detailedesults">
-          <Button style={{ backgroundColor: 'blue' }}>
+          <Button style={{ backgroundColor: 'blue' }} disabled= {currQIndex !== questions.length-1}>
             Submit
           </Button>
         </Link>
