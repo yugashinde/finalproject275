@@ -85,17 +85,19 @@ const SimpleQuestions: React.FC = () => {
                onClick={handleNext}
             disabled= {question.answer === ""  }
             style ={
-                { marginTop : 100,
-                marginBottom : 400,
+                { marginTop : 20,
+                marginBottom : 20,
                 backgroundColor : 'black',
-                color: 'white'
+                color: 'white',
+                marginRight: '10px'
+                
             }}   
                >
                    Next
                </button>
                <button 
-        disabled = {currQIndex !== questions.length - 1}
-        > Submit </button>
+                    disabled = {currQIndex !== questions.length - 1}   
+                > Submit </button>
            </div>
            {showPopup && (
                 <div className="popup-overlay">
