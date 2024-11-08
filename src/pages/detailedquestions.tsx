@@ -59,7 +59,9 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
-        <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === ""}>
+        {/* <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === "" }> */}
+        <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === "" || answeredQuestionsCount===questions.length }>
+
           Done
         </Button>
         <Link to="/detailedesults">
