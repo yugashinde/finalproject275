@@ -63,7 +63,7 @@ const DetailedQuestions: React.FC = () => {
           Done
         </Button>
         <Link to="/detailedesults">
-          <Button style={{ backgroundColor: 'black' }}>
+          <Button style={{ backgroundColor: 'blue' }}>
             Submit
           </Button>
         </Link>
