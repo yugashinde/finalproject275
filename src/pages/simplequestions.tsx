@@ -2,7 +2,7 @@
 import HeaderComponent from '../components/HeaderComponent'
 import React, { useState} from 'react';
 import { Question } from '../interfaces/Question';
-import {Form} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
 
 import Feedback from '../components/feedback'
@@ -82,31 +82,30 @@ const SimpleQuestions: React.FC = () => {
                    ))}
                    {question.answer && <p> Your answer has been recorded! </p> }
                </Form>
-               <button
-               onClick={handleNext}
-            disabled= {question.answer === ""  }
-            style ={
-                { marginTop : 20,
-                marginBottom : 20,
-                backgroundColor : 'black',
-                color: 'white',
-                marginRight: '10px'
-                
-            }}   
-               >
+               <Button
+                onClick={handleNext}
+                disabled= {question.answer === ""  }
+                style ={
+                    { marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px'
+                    }
+                }>
                    Next
-               </button>
+               </Button>
                <Link to="/simpleresults">
-                    <button style={{ backgroundColor: 'white' }} disabled = {currQIndex !== questions.length - 1}>
+                    <Button style={{ backgroundColor: 'white' }} disabled = {currQIndex !== questions.length - 1}>
                         Submit
-                    </button>
+                    </Button>
                 </Link>
            </div>
            {showPopup && (
                 <div className="popup-overlay">
                     <div className="popup-box">
                         <p>You've completed all questions!</p>
-                        <button onClick={() => setShowPopup(false)}>Okay</button>
+                        <Button onClick={() => setShowPopup(false)}>Okay</Button>
                     </div>
                 </div>
             )}

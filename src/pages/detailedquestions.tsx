@@ -73,7 +73,7 @@ const DetailedQuestions: React.FC = () => {
         <div className="popup-overlay">
           <div className="popup-box">
             <p>You've completed all questions!</p>
-            <button onClick={() => setShowPopup(false)}>Okay</button>
+            <Button onClick={() => setShowPopup(false)}>Okay</Button>
           </div>
         </div>
       )}
