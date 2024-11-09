@@ -47,7 +47,7 @@ const DetailedQuestions: React.FC = () => {
   return (
     <div>
       <HeaderComponent />
-      <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
+      <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <h1>Detailed Question</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
