@@ -47,7 +47,7 @@ const DetailedQuestions: React.FC = () => {
   return (
     <div>
       <HeaderComponent />
-      <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
+      <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <h1>Detailed Question</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
@@ -63,7 +63,7 @@ const DetailedQuestions: React.FC = () => {
         </Form.Group>
           <Button
             onClick={handleNext}
-            disabled= {questions[currQIndex].answer === "" }
+            disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
             style ={
                 { marginTop : 20,
                 marginBottom : 20,

@@ -1,12 +1,14 @@
 import React from 'react';
-//import { Form, Button } from 'react-bootstrap';
 import HeaderComponent from '../components/HeaderComponent';
 
-const detailedresults: React.FC = () => {
-return (
+const DetailedResults: React.FC = () => {
+  return (
     <div>
       <HeaderComponent />
-      </div>
-)
-}
-export default detailedresults;
+      <h1>Detailed Results</h1>
+      <p>Here is the detailed result content.</p>
+    </div>
+  );
+};
+
+export default DetailedResults;

@@ -1,10 +1,8 @@
-
 import HeaderComponent from '../components/HeaderComponent'
 import React, { useState} from 'react';
 import { Question } from '../interfaces/Question';
 import {Form, Button} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
-
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import { Link } from 'react-router-dom';
@@ -38,10 +36,10 @@ const SimpleQuestions: React.FC = () => {
       });
 }; 
 
-   const question= questions[currQIndex];
+   const question = questions[currQIndex];
 
    const handleNext = () => {
-    if (questions[currQIndex].answer !== "" && currQIndex < questions.length - 1) {
+    if (questions[currQIndex].answer !== "") {
         setAnsweredQuestionsCount((prevCount) => prevCount + 1);
       }
   
@@ -57,7 +55,7 @@ const SimpleQuestions: React.FC = () => {
        return (
         <div>
           <HeaderComponent />
-          <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
+          <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
           <h1>Simple Question</h1>
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
            <div>
@@ -82,7 +80,7 @@ const SimpleQuestions: React.FC = () => {
                </Form>
                <Button
                 onClick={handleNext}
-                disabled= {question.answer === "" }
+                disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
                 style= {
                     { marginTop : 20,
                     marginBottom : 20,
