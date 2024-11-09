@@ -6,7 +6,7 @@ import "../buttonStyles.css";
 const Header: React.FC = () => {
   return (
     <Link to="/">
-      <Button className="custom-button">Home</Button>
+      <Button className="custom-button"> Home</Button>
     </Link>
   );
 };
