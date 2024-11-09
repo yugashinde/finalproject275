@@ -21,6 +21,7 @@ const DetailedQuestions: React.FC = () => {
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
+  const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
 
   const handleNext = () => {
     if (questions[currQIndex].answer !== "") {
@@ -29,6 +30,7 @@ const DetailedQuestions: React.FC = () => {
 
     if (currQIndex === questions.length - 1) {
       setShowPopup(true);
+      setNextPressedOnLastQuestion(true);
     } else {
       setCurrQIndex((prev) => prev + 1);
     }
@@ -59,35 +61,41 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
-        <Button
-                onClick={handleNext}
-                disabled= {questions[currQIndex].answer === ""}
-                style ={
-                    { marginTop : 20,
-                    marginBottom : 20,
-                    backgroundColor : 'black',
-                    color: 'white',
-                    marginRight: '10px'
-                    }
-                }>
-                   Done
-               </Button>
-        <Link to="/detailedesults">
-          <Button style={{ backgroundColor: 'black', color: 'white' }} disabled= {currQIndex !== questions.length-1}>
-            Submit
-          </Button>
-        </Link>
-      </Form>
+          <Button
+            onClick={handleNext}
+            disabled= {questions[currQIndex].answer === "" }
+            style ={
+                { marginTop : 20,
+                marginBottom : 20,
+                backgroundColor : 'black',
+                color: 'white',
+                marginRight: '10px'
+                }
+            }>
+                Next
+            </Button>
+            {(nextPressedOnLastQuestion) ? (
+            <Link to="/detailedresults">
+                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                Submit
+                </Button>
+            </Link>
+            ) : (
+            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+                Submit
+            </Button>
+            )}
+        </Form>
 
       {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup-box">
-            <p>You've completed all questions!</p>
-            <Button onClick={() => setShowPopup(false)}>Okay</Button>
-          </div>
+      <div className="popup-overlay">
+        <div className="popup-box">
+          <p>You've completed all questions!</p>
+          <Button onClick={() => setShowPopup(false)}>Okay</Button>
         </div>
+      </div>
       )}
-    </div>
+      </div>
   );
 };
 

@@ -25,9 +25,10 @@ const SimpleQuestions: React.FC = () => {
        {id : 6, name : "I enjoy public speaking.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'], answer:""},
        {id : 7, name : "I enjoy working alone.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'],answer:""},
    ]);
-    const [currQIndex, setCurrQuestionIndex] = useState(0);
+    const [currQIndex, setCurrQIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
+    const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
 
    const updateAnswer= (selectedAnswer : string)=>{
     setQuestions(prevQuestions => {
@@ -48,11 +49,16 @@ const SimpleQuestions: React.FC = () => {
    const question= questions[currQIndex];
 
    const handleNext = () => {
-    if (currQIndex < questions.length - 1) {
-      setCurrQuestionIndex(prev => prev + 1);
-      setShowPopup(false);
-    }
-    
+    if (questions[currQIndex].answer !== "") {
+        setAnsweredQuestionsCount((prevCount) => prevCount + 1);
+      }
+  
+      if (currQIndex === questions.length - 1) {
+        setShowPopup(true);
+        setNextPressedOnLastQuestion(true);
+      } else {
+        setCurrQIndex((prev) => prev + 1);
+      }
   };
 
 
@@ -84,8 +90,8 @@ const SimpleQuestions: React.FC = () => {
                </Form>
                <Button
                 onClick={handleNext}
-                disabled= {question.answer === ""  }
-                style ={
+                disabled= {question.answer === "" }
+                style= {
                     { marginTop : 20,
                     marginBottom : 20,
                     backgroundColor : 'black',
@@ -95,11 +101,17 @@ const SimpleQuestions: React.FC = () => {
                 }>
                    Next
                </Button>
-               <Link to="/simpleresults">
-                    <Button style={{ backgroundColor: 'black', color: 'white', }} disabled = {currQIndex !== questions.length - 1}>
-                        Submit
-                    </Button>
-                </Link>
+            {(nextPressedOnLastQuestion) ? (
+            <Link to="/detailedresults">
+                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                Submit
+                </Button>
+            </Link>
+            ) : (
+            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+                Submit
+            </Button>
+            )}
            </div>
            {showPopup && (
                 <div className="popup-overlay">
