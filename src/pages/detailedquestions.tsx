@@ -59,11 +59,21 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
-        <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === ""}>
-          Done
-        </Button>
+        <Button
+                onClick={handleNext}
+                disabled= {questions[currQIndex].answer === ""}
+                style ={
+                    { marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px'
+                    }
+                }>
+                   Done
+               </Button>
         <Link to="/detailedesults">
-          <Button style={{ backgroundColor: 'blue' }} disabled= {currQIndex !== questions.length-1}>
+          <Button style={{ backgroundColor: 'black', color: 'white' }} disabled= {currQIndex !== questions.length-1}>
             Submit
           </Button>
         </Link>
