@@ -31,25 +31,17 @@ const SimpleQuestions: React.FC = () => {
     const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
 
    const updateAnswer= (selectedAnswer : string)=>{
-    setQuestions(prevQuestions => {
+    setQuestions((prevQuestions) => {
         const updatedQuestions = [...prevQuestions];
-        if (updatedQuestions[currQIndex].answer === "") {
-            setAnsweredQuestionsCount(prevCount => prevCount + 1);
-        }
         updatedQuestions[currQIndex].answer = selectedAnswer;
         return updatedQuestions;
-    });
-    
-    if (answeredQuestionsCount + 1 === questions.length) {
-        setShowPopup(true);
-    }
-       
+      });
 }; 
 
    const question= questions[currQIndex];
 
    const handleNext = () => {
-    if (questions[currQIndex].answer !== "") {
+    if (questions[currQIndex].answer !== "" && currQIndex < questions.length - 1) {
         setAnsweredQuestionsCount((prevCount) => prevCount + 1);
       }
   
