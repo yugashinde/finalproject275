@@ -3,7 +3,7 @@
     position: relative;
     overflow: hidden;
     width:100%;
-    height:100%
+    height:100%vh;
   }
   
   .background-video {
@@ -13,18 +13,25 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; /* Ensure video is behind the content */
+    z-index: -1; 
+    filter: brightness(65%)
   }
   
   .homepage-header {
     position: relative;
     z-index: 1;
-    color: white; /* Or any other color to contrast with the video */
+    color: transparent; 
+    -webkit-text-stroke: 1px white;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: bold;
     text-align: center;
+    font-size: 50px;
+    margin-top:5%;
+    
   }
   .container {
     position: relative;
-    z-index: 1; /* Ensures buttons and other content appear on top of the video */
+    z-index: 1;  
   }
 
 
