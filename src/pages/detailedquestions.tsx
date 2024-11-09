@@ -63,7 +63,7 @@ const DetailedQuestions: React.FC = () => {
         </Form.Group>
           <Button
             onClick={handleNext}
-            disabled= {questions[currQIndex].answer === "" }
+            disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
             style ={
                 { marginTop : 20,
                 marginBottom : 20,

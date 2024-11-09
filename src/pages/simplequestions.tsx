@@ -80,7 +80,7 @@ const SimpleQuestions: React.FC = () => {
                </Form>
                <Button
                 onClick={handleNext}
-                disabled= {question.answer === "" }
+                disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
                 style= {
                     { marginTop : 20,
                     marginBottom : 20,
