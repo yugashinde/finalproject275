@@ -21,6 +21,7 @@ const DetailedQuestions: React.FC = () => {
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
+  const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
 
   const handleNext = () => {
     if (questions[currQIndex].answer !== "") {
@@ -29,6 +30,7 @@ const DetailedQuestions: React.FC = () => {
 
     if (currQIndex === questions.length - 1) {
       setShowPopup(true);
+      setNextPressedOnLastQuestion(true);
     } else {
       setCurrQIndex((prev) => prev + 1);
     }
@@ -45,7 +47,7 @@ const DetailedQuestions: React.FC = () => {
   return (
     <div>
       <HeaderComponent />
-      <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
+      <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <h1>Detailed Question</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
@@ -59,6 +61,7 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
+<<<<<<< HEAD
         <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === "" || answeredQuestionsCount===questions.length }>
 
           Done
@@ -69,16 +72,43 @@ const DetailedQuestions: React.FC = () => {
           </Button>
         </Link>
       </Form>
+=======
+          <Button
+            onClick={handleNext}
+            disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
+            style ={
+                { marginTop : 20,
+                marginBottom : 20,
+                backgroundColor : 'black',
+                color: 'white',
+                marginRight: '10px'
+                }
+            }>
+                Next
+            </Button>
+            {(nextPressedOnLastQuestion) ? (
+            <Link to="/detailedresults">
+                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                Submit
+                </Button>
+            </Link>
+            ) : (
+            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+                Submit
+            </Button>
+            )}
+        </Form>
+>>>>>>> 49d54183140acdb341a0fb1cf1e49d752f8b0a69
 
       {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup-box">
-            <p>You've completed all questions!</p>
-            <button onClick={() => setShowPopup(false)}>Okay</button>
-          </div>
+      <div className="popup-overlay">
+        <div className="popup-box">
+          <p>You've completed all questions!</p>
+          <Button onClick={() => setShowPopup(false)}>Okay</Button>
         </div>
+      </div>
       )}
-    </div>
+      </div>
   );
 };
 

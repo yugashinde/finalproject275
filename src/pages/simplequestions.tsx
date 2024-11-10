@@ -1,10 +1,8 @@
-
 import HeaderComponent from '../components/HeaderComponent'
 import React, { useState} from 'react';
 import { Question } from '../interfaces/Question';
-import {Form} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import QuestionProgress from '../components/QuestionProgress';
-
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import { Link } from 'react-router-dom';
@@ -25,41 +23,39 @@ const SimpleQuestions: React.FC = () => {
        {id : 6, name : "I enjoy public speaking.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'], answer:""},
        {id : 7, name : "I enjoy working alone.", options: ['Not at all like me' , 'Not much like me', 'Neutral','Somewhat like me','Very much like me'],answer:""},
    ]);
-    const [currQIndex, setCurrQuestionIndex] = useState(0);
+    const [currQIndex, setCurrQIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
+    const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
 
    const updateAnswer= (selectedAnswer : string)=>{
-    setQuestions(prevQuestions => {
+    setQuestions((prevQuestions) => {
         const updatedQuestions = [...prevQuestions];
-        if (updatedQuestions[currQIndex].answer === "") {
-            setAnsweredQuestionsCount(prevCount => prevCount + 1);
-        }
         updatedQuestions[currQIndex].answer = selectedAnswer;
         return updatedQuestions;
-    });
-    
-    if (answeredQuestionsCount + 1 === questions.length) {
-        setShowPopup(true);
-    }
-       
+      });
 }; 
 
-   const question= questions[currQIndex];
+   const question = questions[currQIndex];
 
    const handleNext = () => {
-    if (currQIndex < questions.length - 1) {
-      setCurrQuestionIndex(prev => prev + 1);
-      setShowPopup(false);
-    }
-    
+    if (questions[currQIndex].answer !== "") {
+        setAnsweredQuestionsCount((prevCount) => prevCount + 1);
+      }
+  
+      if (currQIndex === questions.length - 1) {
+        setShowPopup(true);
+        setNextPressedOnLastQuestion(true);
+      } else {
+        setCurrQIndex((prev) => prev + 1);
+      }
   };
 
 
        return (
         <div>
           <HeaderComponent />
-          <QuestionProgress totalQuestions={questions.length} progress={currQIndex+1} />
+          <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
           <h1>Simple Question</h1>
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
            <div>
@@ -82,31 +78,36 @@ const SimpleQuestions: React.FC = () => {
                    ))}
                    {question.answer && <p> Your answer has been recorded! </p> }
                </Form>
-               <button
-               onClick={handleNext}
-            disabled= {question.answer === ""  }
-            style ={
-                { marginTop : 20,
-                marginBottom : 20,
-                backgroundColor : 'black',
-                color: 'white',
-                marginRight: '10px'
-                
-            }}   
-               >
+               <Button
+                onClick={handleNext}
+                disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
+                style= {
+                    { marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px'
+                    }
+                }>
                    Next
-               </button>
-               <Link to="/simpleresults">
-                    <button style={{ backgroundColor: 'white' }} disabled = {currQIndex !== questions.length - 1}>
-                        Submit
-                    </button>
-                </Link>
+               </Button>
+            {(nextPressedOnLastQuestion) ? (
+            <Link to="/detailedresults">
+                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                Submit
+                </Button>
+            </Link>
+            ) : (
+            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+                Submit
+            </Button>
+            )}
            </div>
            {showPopup && (
                 <div className="popup-overlay">
                     <div className="popup-box">
                         <p>You've completed all questions!</p>
-                        <button onClick={() => setShowPopup(false)}>Okay</button>
+                        <Button onClick={() => setShowPopup(false)}>Okay</Button>
                     </div>
                 </div>
             )}
