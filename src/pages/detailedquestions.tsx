@@ -61,7 +61,6 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
-
           <Button
             onClick={handleNext}
             disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
