@@ -38,13 +38,12 @@ function App() {
     <div className="App">
           <div>
       <Router>
-
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/simplequestions" element={<SimpleQuestions />} />
           <Route path="/detailedquestions" element={<DetailedQuestions />} />
-          <Route path="/detailedquestions/detailedresults" element={<DetailedResults />} />
-          <Route path="/simplequestions/simpleresults" element={<SimpleResults />} />
+          <Route path="/detailedresults" element={<DetailedResults />} />
+          <Route path="/simpleresults" element={<SimpleResults />} />
         </Routes>
     </Router>
     <Form>
