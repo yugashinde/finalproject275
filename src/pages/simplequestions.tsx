@@ -92,7 +92,7 @@ const SimpleQuestions: React.FC = () => {
                    Next
                </Button>
             {(nextPressedOnLastQuestion) ? (
-            <Link to="/detailedresults">
+            <Link to="/simpleresults">
                 <Button style={{ backgroundColor: 'black', color: 'white' }}>
                 Submit
                 </Button>
