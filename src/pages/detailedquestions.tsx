@@ -61,18 +61,7 @@ const DetailedQuestions: React.FC = () => {
             onChange={(e) => updateAnswer(e.target.value)}
           />
         </Form.Group>
-<<<<<<< HEAD
-        <Button type="button" onClick={handleNext} disabled= {questions[currQIndex].answer === "" || answeredQuestionsCount===questions.length }>
 
-          Done
-        </Button>
-        <Link to="/detailedesults">
-          <Button style={{ backgroundColor: 'blue' }} disabled= {currQIndex !== questions.length-1}>
-            Submit
-          </Button>
-        </Link>
-      </Form>
-=======
           <Button
             onClick={handleNext}
             disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
@@ -98,7 +87,6 @@ const DetailedQuestions: React.FC = () => {
             </Button>
             )}
         </Form>
->>>>>>> 49d54183140acdb341a0fb1cf1e49d752f8b0a69
 
       {showPopup && (
       <div className="popup-overlay">
