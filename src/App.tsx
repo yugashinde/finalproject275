@@ -37,8 +37,6 @@ function App() {
 
     <div className="App">
           <div>
-          
-
       <Router>
 
         <Routes>
