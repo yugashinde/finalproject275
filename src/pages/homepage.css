@@ -14,7 +14,7 @@
     height: 100%;
     object-fit: cover;
     z-index: -1; 
-    filter: brightness(65%)
+    filter: brightness(40%)
   }
   
   .homepage-header {
@@ -25,7 +25,7 @@
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: bold;
     text-align: center;
-    font-size: 50px;
+    font-size: 65px;
     margin-top:5%;
     
   }
@@ -53,4 +53,11 @@
     box-shadow: 0 8px 20px rgba(0, 102, 153, 0.3); 
   }
 
+h2{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 35px;
+}
+.text-box p{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
   

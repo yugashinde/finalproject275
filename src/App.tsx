@@ -7,7 +7,6 @@ import SimpleQuestions from './pages/simplequestions';
 import SimpleResults from './pages/simpleresults'
 import DetailedResults from './pages/detailedresults'
 import HomePage from './pages/homepage';
-import video from './video/4782596-uhd_3840_2160_30fps.mp4';
 
 
 
@@ -38,8 +37,7 @@ function App() {
 
     <div className="App">
           <div>
-          <video className="background-video" src={video} autoPlay loop muted playsInline />
-          <div className="container"></div>
+          
 
       <Router>
 
