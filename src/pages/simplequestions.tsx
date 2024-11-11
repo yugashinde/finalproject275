@@ -6,8 +6,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import { Link } from 'react-router-dom';
-
-
+import backgroundImage from '../images/pexels-vyacheslav-bobin-105199946-12269547.jpg';
 
 const SimpleQuestions: React.FC = () => {
 
@@ -53,7 +52,13 @@ const SimpleQuestions: React.FC = () => {
 
 
        return (
-        <div>
+        <div className="simplequestions"
+        style={{
+            backgroundImage: `url(${backgroundImage})`,  // Path to image in public folder
+            backgroundSize: 'cover',  // Ensure the image covers the full container
+            backgroundPosition: 'center',  // Center the image
+            height: '100vh'  // Set the height to cover the entire viewport
+          }}>
           <HeaderComponent />
           <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
           <h1>Simple Question</h1>
