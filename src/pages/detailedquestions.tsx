@@ -48,12 +48,12 @@ const DetailedQuestions: React.FC = () => {
     <div>
       <HeaderComponent />
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
-      <h1>Detailed Question</h1>
+      <h1 className = "detailed-header">Detailed Question Quiz</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
       <Form>
         <Form.Group>
-          <label>Q{questions[currQIndex].id}: {questions[currQIndex].name}</label>
+          <label>{questions[currQIndex].name}</label>
           <Form.Control
             as="textarea"
             rows={3}

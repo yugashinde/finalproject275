@@ -60,4 +60,13 @@ h2{
 .text-box p{
   font-family: 'Montserrat', sans-serif;
 }
+
+.homepage-description{
+  color: white;
+  text-align: center;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  padding: 6px 10px;
+  margin-top:2%;
+}
   
