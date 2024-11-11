@@ -11,7 +11,6 @@ const QuestionProgress: React.FC<QuestionProgressProps> = ({ totalQuestions, pro
 
   return (
     <div style={{ width: '100%', padding: '20px' }}>
-      <h4>Quiz Progress</h4>
       <ProgressBar now={progressPercentage} label={`${Math.round(progressPercentage)}%`} />
     </div>
   );
