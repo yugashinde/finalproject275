@@ -9,13 +9,16 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import axios from 'axios';
-import { Models } from 'openai/resources';
+
+import { OpenAI } from 'openai';
+
 
 
 
 const SimpleQuestions: React.FC = () => {
 
-
+  
+ 
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
   
    const [questions, setQuestions] = useState<Question[]>([
@@ -30,7 +33,7 @@ const SimpleQuestions: React.FC = () => {
     const [currQIndex, setCurrQuestionIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-    const [suggestedCareer, setSuggestedCareer] = useState<string>("none");
+    const [suggestedCareer, setSuggestedCareer] = useState<string|null>(null);
 
    const updateAnswer= (selectedAnswer : string)=>{
     setQuestions(prevQuestions => {
@@ -47,7 +50,7 @@ const SimpleQuestions: React.FC = () => {
     }
     }; 
 
-   const question= questions[currQIndex];
+   const question = questions[currQIndex];
 
    const handleNext = () => {
     if (currQIndex < questions.length - 1) {
@@ -55,8 +58,49 @@ const SimpleQuestions: React.FC = () => {
       setShowPopup(false);
     }
   };
+  
+  
+  
+  const apiKey = localStorage.getItem('MYKEY');
+  if (!apiKey) {
+    console.error('API Key is missing!');
+    return null;
+  }
+  
+  
   const handleSubmit =  async () => {
     const answers = questions.map(q => q.answer);
+    /*
+    //const url = "https://api.openai.com/v1/chat/completions"
+
+    
+
+
+    try{
+    const response = await openai.chat.completions.create({
+      model : 'gpt-4',
+      messages: [
+        {role : 'system', content : 'you are a helpful career advisor that uses the answers given by user to suggest them a career suitable for them' },
+        {role : 'user', content : prompt}
+      ], 
+      max_tokens : 2048,
+      temperature :1,
+    });
+    if(response.choices[0].message.content === null){ 
+      setSuggestedCareer("No suggestion available, Try Again!")
+    }
+    else{
+    setSuggestedCareer(response.choices[0].message.content);} 
+  
+  catch(error){
+    console.error("error with openAi",error)
+
+  }
+    */
+
+  
+  try {
+  
     const prompt = 
     `Based on following answers to the career quiz 
     1. ${questions[0].name} Answer: ${answers[0]}
@@ -67,43 +111,55 @@ const SimpleQuestions: React.FC = () => {
     6. ${questions[5].name} Answer : ${answers[5]} 
     7. ${questions[6].name} Answer : ${answers[6]} 
     Please suggest a career based on the given information` ; 
-    const apikey = localStorage.getItem('MYKEY') ; 
 
-    if (!apikey) {
-      console.error("API Key is missing!");
+    const apiKey = localStorage.getItem('MYKEY');
+    if (!apiKey) {
+      console.error('API Key is missing!');
       return;
     }
-    const url = "https://api.openai.com/v1/chat/completions"
 
+    const url = 'https://api.openai.com/v1/chat/completions';
 
-   try{
+    // Make the API call with proper headers
     const response = await axios.post(
       url,
       {
-        model :'gpt-4',
+        model: 'gpt-4',
         messages: [
-          {role : 'system', content : 'you are a helpful career advisor that uses the answers given by user to suggest them a career suitable for them' },
-          {role : 'user', content : prompt}
-        ]
+          { role: 'system', content: 'You are a helpful career advisor.' },
+          { role: 'user', content: prompt },
+        ],
+        max_tokens: 2048,
+        temperature: 0.5,
       },
       {
-        headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('MYKEY')}`,
-        'Content-Type' : 'application/json'
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,  // Add the API Key here in the header
+          'Content-Type': 'application/json',  // Content-Type is important to indicate JSON payload
+        },
       }
-    }
-    
-  );
-  if(response.data && response.data.choices && response.data.choices.length > 0){
-    setSuggestedCareer(response.data.choices[0].message.content);} 
-    else {
-      console.error('Unexpected API response',response.data);
-    }
-  }
-  catch(error){
-  console.error('error',error); }
+    );
 
-  };
+    // Check the response status 
+
+    console.log(response.data.choices[0].message.content);
+
+    if (response.status === 200) {
+      setSuggestedCareer(response.data.choices[0].message.content);
+    } else {
+      setSuggestedCareer('No career suggestion available, please try again.'+ response );
+    }
+  } catch (error) {
+    console.error('Error with OpenAI API request:', error);
+    setSuggestedCareer('An error occurred while fetching the career suggestion. Please try again later.');
+  }
+      
+       
+    
+  }
+  
+
+  
 
    return (
         <div>
