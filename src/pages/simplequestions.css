@@ -1,5 +1,4 @@
 .simplequestions {
-    position: relative;
     color:white;
 }
 .simplequestions h1 {
@@ -50,14 +49,35 @@
     margin-right: 6px;
 }
 
-.custom-button{
+
+
+
+.home-button{
     background-color: transparent;
     border-color:white;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
 }
-.custom-button:hover{
+.home-button:hover{
     background-color: transparent;
     color:white;
     border-color: rgb(239, 225, 200);
     box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);
+    transform: scale(1.1);
+}
+
+.next-button:hover{
+    background-color: transparent;
+    color:white;
+    border-color: rgb(239, 225, 200);
+    box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);
+    transform: scale(1.1);
+}
+.submit-button:hover{
+    background-color: transparent;
+    color:white;
+    border-color: rgb(239, 225, 200);
+    box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);
+    transform: scale(1.1);
 
 }
