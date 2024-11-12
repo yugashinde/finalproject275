@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 
 import HeaderComponent from '../components/HeaderComponent'
 import React, { useState} from 'react';
@@ -8,6 +9,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import axios from 'axios';
+import { Models } from 'openai/resources';
 
 
 
@@ -28,7 +30,7 @@ const SimpleQuestions: React.FC = () => {
     const [currQIndex, setCurrQuestionIndex] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-    const [suggestedCareer, setSuggestedCareer] = useState<string|null>(null);
+    const [suggestedCareer, setSuggestedCareer] = useState<string>("none");
 
    const updateAnswer= (selectedAnswer : string)=>{
     setQuestions(prevQuestions => {
@@ -55,22 +57,52 @@ const SimpleQuestions: React.FC = () => {
   };
   const handleSubmit =  async () => {
     const answers = questions.map(q => q.answer);
-    const prompt = 'Based on following answers to the career quiz : 1. {questions[0].name} Answer: {answers[0]} 2. {questions[1].name} Answer : {answers[1]} 3. {questions[2].name} Answer : {answers[2]} 4. {questions[3].name} Answer : {answers[3]}  5. {questions[4].name} Answer : {answers[4]} 6. {questions[5].name} Answer : {answers[5]} 7. {questions[6].name} Answer : {answers[6]} Please suggest a career based on the given information'
-    const apikey = localStorage.key
-    try{
-      const response = await axios.post('https://api.openai.com/v1/chat/completions',{ messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'}, {role: 'user', content : prompt},]},
-        {
-          headers: {
-            'Authorization': `Bearer ${apikey}`,
-            'Content-Type': 'application/json',
-          }
-        } 
-    );
+    const prompt = 
+    `Based on following answers to the career quiz 
+    1. ${questions[0].name} Answer: ${answers[0]}
+    2. ${questions[1].name} Answer : ${answers[1]}
+    3. ${questions[2].name} Answer : ${answers[2]} 
+    4. ${questions[3].name} Answer : ${answers[3]}  
+    5. ${questions[4].name} Answer : ${answers[4]} 
+    6. ${questions[5].name} Answer : ${answers[5]} 
+    7. ${questions[6].name} Answer : ${answers[6]} 
+    Please suggest a career based on the given information` ; 
+    const apikey = localStorage.getItem('MYKEY') ; 
 
-      setSuggestedCareer(response.data.choices[0].message.content);}
-      catch(error){
-        console.error("didnt connect", error);
+    if (!apikey) {
+      console.error("API Key is missing!");
+      return;
+    }
+    const url = "https://api.openai.com/v1/chat/completions"
+
+
+   try{
+    const response = await axios.post(
+      url,
+      {
+        model :'gpt-4',
+        messages: [
+          {role : 'system', content : 'you are a helpful career advisor that uses the answers given by user to suggest them a career suitable for them' },
+          {role : 'user', content : prompt}
+        ]
+      },
+      {
+        headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('MYKEY')}`,
+        'Content-Type' : 'application/json'
       }
+    }
+    
+  );
+  if(response.data && response.data.choices && response.data.choices.length > 0){
+    setSuggestedCareer(response.data.choices[0].message.content);} 
+    else {
+      console.error('Unexpected API response',response.data);
+    }
+  }
+  catch(error){
+  console.error('error',error); }
+
   };
 
    return (
@@ -105,8 +137,6 @@ const SimpleQuestions: React.FC = () => {
                disabled = {currQIndex !== questions.length-1} 
                onClick ={handleSubmit}>
                 Submit </button>
-
-
                <button
                onClick={handleNext}
               disabled= {question.answer === "" && question.id === 7}
@@ -134,7 +164,7 @@ const SimpleQuestions: React.FC = () => {
             {suggestedCareer && (
               <div className='career-suggestion formating'>
                 <h3> Your suggested Career </h3>
-                <p> {suggestedCareer} </p>
+                <p> {suggestedCareer}</p>
                 </div>
             )}
            </div>
