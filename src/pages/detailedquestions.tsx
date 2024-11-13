@@ -52,13 +52,13 @@ const DetailedQuestions: React.FC = () => {
       <video className="background-video" src={video} autoPlay loop muted playsInline />
       <div className="container"></div>
       <HeaderComponent />
-      <h1>Detailed Question</h1>
+      <h1  className = "detailed-header">Detailed Question</h1>
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
       <Form>
         <Form.Group>
-          <label>Q{questions[currQIndex].id}: {questions[currQIndex].name}</label>
+          <label>{questions[currQIndex].name}</label>
           <Form.Control
             as="textarea"
             rows={3}
