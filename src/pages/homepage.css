@@ -7,7 +7,7 @@
   }
   
   .background-video {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -32,25 +32,6 @@
   .container {
     position: relative;
     z-index: 1;  
-  }
-
-
-  
-  .custom-button {
-
-    background-color: rgb(150, 213, 232);
-    color: #000000;
-    border: 2%;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-
-  }
-
-  .custom-button:hover {
-    background-color: rgba(0, 102, 153, 0.7); 
-    transform: scale(1.05); 
-    box-shadow: 0 8px 20px rgba(0, 102, 153, 0.3); 
   }
 
 h2{
