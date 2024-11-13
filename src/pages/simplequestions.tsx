@@ -9,8 +9,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import axios from 'axios';
-
-import { OpenAI } from 'openai';
+import { getSuggestedQuery } from '@testing-library/react';
 
 
 
@@ -59,105 +58,53 @@ const SimpleQuestions: React.FC = () => {
     }
   };
   
-  
-  
-  const apiKey = localStorage.getItem('MYKEY');
-  if (!apiKey) {
-    console.error('API Key is missing!');
-    return null;
-  }
-  
-  
-  const handleSubmit =  async () => {
-    const answers = questions.map(q => q.answer);
-    /*
-    //const url = "https://api.openai.com/v1/chat/completions"
 
+
+  
+  const handleSubmit =   () => {
     
-
-
-    try{
-    const response = await openai.chat.completions.create({
-      model : 'gpt-4',
-      messages: [
-        {role : 'system', content : 'you are a helpful career advisor that uses the answers given by user to suggest them a career suitable for them' },
-        {role : 'user', content : prompt}
-      ], 
-      max_tokens : 2048,
-      temperature :1,
-    });
-    if(response.choices[0].message.content === null){ 
-      setSuggestedCareer("No suggestion available, Try Again!")
-    }
-    else{
-    setSuggestedCareer(response.choices[0].message.content);} 
-  
-  catch(error){
-    console.error("error with openAi",error)
-
-  }
-    */
-
-  
-  try {
-  
-    const prompt = 
-    `Based on following answers to the career quiz 
-    1. ${questions[0].name} Answer: ${answers[0]}
-    2. ${questions[1].name} Answer : ${answers[1]}
-    3. ${questions[2].name} Answer : ${answers[2]} 
-    4. ${questions[3].name} Answer : ${answers[3]}  
-    5. ${questions[4].name} Answer : ${answers[4]} 
-    6. ${questions[5].name} Answer : ${answers[5]} 
-    7. ${questions[6].name} Answer : ${answers[6]} 
-    Please suggest a career based on the given information` ; 
-
-    const apiKey = localStorage.getItem('MYKEY');
-    if (!apiKey) {
-      console.error('API Key is missing!');
+    const apiKey = localStorage.getItem("MYKEY");
+    
+    console.log("API Key:", apiKey);
+    if (!apiKey)
+    {
+      console.log("---------Api key not set correctly");
+      setSuggestedCareer("API KEY ERROR RE-ENTER YOUR API KEY");
       return;
     }
+    const prompt = questions.map((q, index) => {
+      return `${index + 1}. ${q.name} Answer: ${q.answer}`;
+    }).join("\n");
+  
 
-    const url = 'https://api.openai.com/v1/chat/completions';
-
-    // Make the API call with proper headers
-    const response = await axios.post(
-      url,
-      {
-        model: 'gpt-4',
-        messages: [
-          { role: 'system', content: 'You are a helpful career advisor.' },
-          { role: 'user', content: prompt },
-        ],
-        max_tokens: 2048,
-        temperature: 0.5,
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,  // Add the API Key here in the header
-          'Content-Type': 'application/json',  // Content-Type is important to indicate JSON payload
+    axios.post( 
+        "https://api.openai.com/v1/chat/completions", 
+        {
+          model: "gpt-3.5-turbo",  // Make sure to specify a valid model, such as GPT-3.5 or GPT-4
+          
+          messages: [
+            { role: "system", content: "You are a helpful career advisor that gives a career suitable for user based on there answers to the quiz." },
+            { role: "user", prompt },
+          ],
         },
-      }
-    );
-
-    // Check the response status 
-
-    console.log(response.data.choices[0].message.content);
-
-    if (response.status === 200) {
-      setSuggestedCareer(response.data.choices[0].message.content);
-    } else {
-      setSuggestedCareer('No career suggestion available, please try again.'+ response );
-    }
-  } catch (error) {
-    console.error('Error with OpenAI API request:', error);
-    setSuggestedCareer('An error occurred while fetching the career suggestion. Please try again later.');
-  }
+        { 
+          headers : {
+            Authorization : `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
       
-       
+          }
+        }).then((response)=>{
+          console.log("here");
+          setSuggestedCareer(response.data.choices[0].message.content);
+        })
+        .catch((error) => {
+          console.error("errorrr", error);
+          setSuggestedCareer(`Error: ${error.message || "An unexpected error occurred."}`);
+        });  
     
   }
   
+
 
   
 
@@ -224,6 +171,7 @@ const SimpleQuestions: React.FC = () => {
                 </div>
             )}
            </div>
+           
        );
 
 
