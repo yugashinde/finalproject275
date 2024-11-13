@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
       <video className="background-video" src={video} autoPlay loop muted playsInline />
       <div className="container"></div>
       <h1 className='homepage-header'>WELCOME TO CAREERCOAST</h1>
-      <div className = "homepage-description"> Welcome to CareerCoast, your serene pathway to career clarity. Just like the ocean’s waves reveal hidden treasures, our personalized assessments help uncover your unique strengths, guiding you toward a fulfilling career journey. Set sail with us as you explore new horizons, discover opportunities, and chart a course that aligns with your true potential. With CareerlCoast, navigating your future is as refreshing as a day at the beach. </div>
+      <div className = "homepage-description"> Welcome to CareerCoast, your serene pathway to career clarity. Just like the ocean’s waves reveal hidden treasures, our personalized assessments help uncover your unique strengths, guiding you toward a fulfilling career journey. Set sail with us as you explore new horizons, discover opportunities, and chart a course that aligns with your true potential. With CareerCoast, navigating your future is as refreshing as a day at the beach. </div>
       <Container>
       <Row> <Col md={6}> <NavigateSimpleButton /> </Col>
       <Col md = {6}> <NavigateDetailedButton /> </Col> 
