@@ -10,9 +10,9 @@ const QuestionProgress: React.FC<QuestionProgressProps> = ({ totalQuestions, pro
   const progressPercentage = Math.min((progress / totalQuestions) * 100, 100);
 
   return (
-    <div style={{ width: '100%', padding: '20px'}}>
-      {/* <h4>Quiz Progress</h4> */}
-      <ProgressBar now={progressPercentage} label={`${Math.round(progressPercentage)}%`} />
+    <div style={{ width: '100%', padding: '20px', display:'flex', justifyContent: 'center'}}>
+      <ProgressBar now={progressPercentage} label={`${Math.round(progressPercentage)}%`} 
+      className="progress-bar-custom"/>
     </div>
   );
 };

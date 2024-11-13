@@ -48,16 +48,24 @@
 .radio-buttons input{
     margin-right: 6px;
 }
+.radio-buttons label:hover {
+    background-color: #242410;
+    border-radius: 10px;
+}
 
 
 
-
+.container{
+    padding-top:3px;
+}
 .home-button{
     background-color: transparent;
     border-color:white;
     transition: transform 0.3s ease;
     border-radius: 8px;
+    outline:none;
 }
+
 .home-button:hover{
     background-color: transparent;
     color:white;
@@ -81,3 +89,25 @@
     transform: scale(1.1);
 
 }
+
+
+.progress-bar-custom{
+    width: 50%;
+    height:24px;
+    border-radius: 20px;
+    border:2px solid #f0eded;
+    position:absolute;
+    left:50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    background-color: white;
+    margin:0 auto;
+    box-shadow: 0 0 10px 2px rgba(202, 107, 28, 0.5);
+}
+.progress-bar {
+    background-color: #e8b246; 
+    height: 100%; 
+    transition: width 0.4s ease; 
+    
+}
+

@@ -6,7 +6,8 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import { Link } from 'react-router-dom';
-import backgroundImage from '../images/pexels-arina-krasnikova-7002706.jpg';
+import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
+
 const SimpleQuestions: React.FC = () => {
     
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
@@ -51,13 +52,9 @@ const SimpleQuestions: React.FC = () => {
 
        return (
         <div className="simplequestions"
-        style={{
-            backgroundImage: `url(${backgroundImage})`,  // Path to image in public folder
-            backgroundSize: 'cover',  // Ensure the image covers the full container
-            backgroundPosition: 'center',  // Center the image
-            height: '100vh'  // Set the height to cover the entire viewport
-            
-          }}>
+        >
+            <video className="background-video" src={video} autoPlay loop muted playsInline />
+            <div className="container"></div>
           <HeaderComponent />
           <h1>Simple Question</h1>
           <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
@@ -115,22 +112,25 @@ const SimpleQuestions: React.FC = () => {
                     transition: 'transform 0.3s ease',
                     borderRadius: '10px',
                     paddingTop:'4px',
-                    paddingBottom: '4px',}}>
+                    paddingBottom: '4px',}}
+                >
                 Submit
                 </Button>
             </Link>
             ) : (
             <Button 
+            className="submit-button"
             style= {
                 { marginTop : 20,
-                marginBottom : 20,
-                backgroundColor : 'black',
-                color: 'white',
-                marginRight: '10px',
-                
-
-                
-                } 
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px',
+                    border: '1px solid white',
+                    transition: 'transform 0.3s ease',
+                    borderRadius: '10px',
+                    paddingTop:'4px',
+                    paddingBottom: '4px',}
             } disabled>
                 Submit
             </Button>
