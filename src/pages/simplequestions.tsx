@@ -9,7 +9,7 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import axios from 'axios';
-import { getSuggestedQuery } from '@testing-library/react';
+
 
 
 
@@ -59,9 +59,11 @@ const SimpleQuestions: React.FC = () => {
   };
   
 
+  const [loading, setLoading] = useState(false);
 
   
   const handleSubmit =   () => {
+    setLoading(true);
     
     const apiKey = localStorage.getItem("MYKEY");
     
@@ -72,7 +74,7 @@ const SimpleQuestions: React.FC = () => {
       setSuggestedCareer("API KEY ERROR RE-ENTER YOUR API KEY");
       return;
     }
-    const prompt = questions.map((q, index) => {
+    const prompt = "Given the answers to this career quiz suggest a career\n" + questions.map((q, index) => {
       return `${index + 1}. ${q.name} Answer: ${q.answer}`;
     }).join("\n");
   
@@ -84,23 +86,29 @@ const SimpleQuestions: React.FC = () => {
           
           messages: [
             { role: "system", content: "You are a helpful career advisor that gives a career suitable for user based on there answers to the quiz." },
-            { role: "user", prompt },
+            { role: "user", content : prompt },
           ],
         },
-        { 
+        {
+          timeout : 100000,
+          params: {
+            userId : 12344
+          },
           headers : {
             Authorization : `Bearer ${apiKey}`,
             "Content-Type": "application/json",
-      
           }
-        }).then((response)=>{
+        },).then((response)=>{
           console.log("here");
           setSuggestedCareer(response.data.choices[0].message.content);
         })
         .catch((error) => {
-          console.error("errorrr", error);
+          
+          console.error("errorrr ::::::::::::", error);
           setSuggestedCareer(`Error: ${error.message || "An unexpected error occurred."}`);
-        });  
+        }).finally(
+          ()=>{setLoading(false)}
+        );  
     
   }
   
@@ -137,7 +145,7 @@ const SimpleQuestions: React.FC = () => {
 
 
                <button 
-               disabled = {currQIndex !== questions.length-1} 
+               disabled = { answeredQuestionsCount !== questions.length} 
                onClick ={handleSubmit}>
                 Submit </button>
                <button
@@ -167,6 +175,7 @@ const SimpleQuestions: React.FC = () => {
             {suggestedCareer && (
               <div className='career-suggestion formating'>
                 <h3> Your suggested Career </h3>
+                <p>your answers are loading{loading}</p>
                 <p> {suggestedCareer}</p>
                 </div>
             )}
