@@ -56,11 +56,11 @@ const SimpleQuestions: React.FC = () => {
             <video className="background-video" src={video} autoPlay loop muted playsInline />
             <div className="container"></div>
           <HeaderComponent />
-          <h1>Simple Question</h1>
+          <h1 className = "simple-header">Simple Question</h1>
           <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
            <div>
-               <h2>Q{question.id}  {question.name} </h2>
+               <h2>{question.name}</h2>
                
                <Form>
                {question.options.map((Option, index) => (
@@ -151,6 +151,3 @@ const SimpleQuestions: React.FC = () => {
 
 
 export default SimpleQuestions;
-
-
-
