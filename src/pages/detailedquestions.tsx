@@ -6,7 +6,6 @@ import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
 import { Link } from 'react-router-dom';
-// import backgroundImage from '../images/pexels-arina-krasnikova-7002706.jpg';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 
 

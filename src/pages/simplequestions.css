@@ -22,7 +22,8 @@
 }
 
 .popup-box {
-    background-color: #fff;
+    background-color: #c49435;
+    color:white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -34,6 +35,19 @@
     font-size: 18px;
 }
 
+.popup-box button{
+    border-radius: 8px;
+    background-color: #74561c;
+    color:white;
+    transition: background-color 0.3s ease;
+    border-color:white;
+
+}
+.popup-box button:hover{
+    background-color: #333;
+    box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);
+    
+}
 .radio-buttons{
     display: flex;
     align-items: center;
@@ -52,8 +66,6 @@
     background-color: #242410;
     border-radius: 10px;
 }
-
-
 
 .container{
     padding-top:3px;
@@ -109,5 +121,24 @@
     height: 100%; 
     transition: width 0.4s ease; 
     
+}
+
+.APISubmit-Button{
+    background-color: black;
+    border-color:white;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    outline:none;
+    padding-top:4px;
+    padding-bottom: 4px;
+
+
+}
+.APISubmit-Button:hover{
+    background-color: transparent;
+    color:white;
+    border-color: rgb(239, 225, 200);
+    box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);
+    transform: scale(1.1);
 }
 
