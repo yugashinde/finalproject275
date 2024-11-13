@@ -6,12 +6,10 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback'
 import './simplequestions.css';
 import { Link } from 'react-router-dom';
-
-
+import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 
 const SimpleQuestions: React.FC = () => {
-
-
+    
 //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
   
    const [questions, setQuestions] = useState<Question[]>([
@@ -53,10 +51,13 @@ const SimpleQuestions: React.FC = () => {
 
 
        return (
-        <div>
+        <div className="simplequestions"
+        >
+            <video className="background-video" src={video} autoPlay loop muted playsInline />
+            <div className="container"></div>
           <HeaderComponent />
+          <h1 className = "simple-header">Simple Question</h1>
           <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
-          <h1 className = "simple-header">Simple Question Quiz</h1>
           <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
            <div>
                <h2>{question.name}</h2>
@@ -81,24 +82,56 @@ const SimpleQuestions: React.FC = () => {
                <Button
                 onClick={handleNext}
                 disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
+                className="next-button"
                 style= {
                     { marginTop : 20,
                     marginBottom : 20,
                     backgroundColor : 'black',
                     color: 'white',
-                    marginRight: '10px'
-                    }
+                    marginRight: '10px',
+                    border: '1px solid white',
+                    transition: 'transform 0.3s ease',
+                    borderRadius: '10px',
+                    paddingTop:'4px',
+                    paddingBottom: '4px',
+                    } 
                 }>
                    Next
                </Button>
             {(nextPressedOnLastQuestion) ? (
             <Link to="/simpleresults">
-                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                <Button 
+                className="submit-button"
+
+                style={{ marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px',
+                    border: '1px solid white',
+                    transition: 'transform 0.3s ease',
+                    borderRadius: '10px',
+                    paddingTop:'4px',
+                    paddingBottom: '4px',}}
+                >
                 Submit
                 </Button>
             </Link>
             ) : (
-            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+            <Button 
+            className="submit-button"
+            style= {
+                { marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px',
+                    border: '1px solid white',
+                    transition: 'transform 0.3s ease',
+                    borderRadius: '10px',
+                    paddingTop:'4px',
+                    paddingBottom: '4px',}
+            } disabled>
                 Submit
             </Button>
             )}
@@ -107,7 +140,7 @@ const SimpleQuestions: React.FC = () => {
                 <div className="popup-overlay">
                     <div className="popup-box">
                         <p>You've completed all questions!</p>
-                        <Button onClick={() => setShowPopup(false)}>Okay</Button>
+                        <Button  onClick={() => setShowPopup(false)}>Okay</Button>
                     </div>
                 </div>
             )}

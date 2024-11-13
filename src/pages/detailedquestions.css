@@ -1,5 +1,5 @@
 .detailedquestions{
-    background-color: rgb(255, 205, 252);
+    color:white;
 }
 .detailed-questions-wrapper {
     position: relative;
@@ -32,6 +32,16 @@
 
 }
 
+
+.detailed-textarea{
+    width:650px;
+    height:150px;
+    resize: vertical;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
 .detailed-header {
     position: relative;
     z-index: 1;
@@ -42,4 +52,5 @@
     text-align: center;
     font-size: 70px;
     margin-top:5%;
+
 }

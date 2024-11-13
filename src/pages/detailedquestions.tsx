@@ -6,6 +6,9 @@ import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
 import { Link } from 'react-router-dom';
+import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
+
+
 
 const DetailedQuestions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([
@@ -45,10 +48,12 @@ const DetailedQuestions: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="detailedquestions">
+      <video className="background-video" src={video} autoPlay loop muted playsInline />
+      <div className="container"></div>
       <HeaderComponent />
+      <h1  className = "detailed-header">Detailed Question</h1>
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
-      <h1 className = "detailed-header">Detailed Question Quiz</h1>
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 
       <Form>
@@ -59,29 +64,60 @@ const DetailedQuestions: React.FC = () => {
             rows={3}
             value={questions[currQIndex].answer}
             onChange={(e) => updateAnswer(e.target.value)}
+            className="detailed-textarea"
+            placeholder="Type your response here"
           />
         </Form.Group>
           <Button
             onClick={handleNext}
             disabled= {questions[currQIndex].answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
-            style ={
-                { marginTop : 20,
-                marginBottom : 20,
-                backgroundColor : 'black',
-                color: 'white',
-                marginRight: '10px'
-                }
-            }>
+            className="next-button"
+                style= {
+                    { marginTop : 20,
+                    marginBottom : 20,
+                    backgroundColor : 'black',
+                    color: 'white',
+                    marginRight: '10px',
+                    border: '1px solid white',
+                    transition: 'transform 0.3s ease',
+                    borderRadius: '10px',
+                    paddingTop:'4px',
+                    paddingBottom: '4px',
+                    } 
+                }>
                 Next
             </Button>
             {(nextPressedOnLastQuestion) ? (
             <Link to="/detailedresults">
-                <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                <Button className="submit-button"
+
+                style={{ marginTop : 20,
+                  marginBottom : 20,
+                  backgroundColor : 'black',
+                  color: 'white',
+                  marginRight: '10px',
+                  border: '1px solid white',
+                  transition: 'transform 0.3s ease',
+                  borderRadius: '10px',
+                  paddingTop:'4px',
+                  paddingBottom: '4px',}} 
+                  >
                 Submit
                 </Button>
             </Link>
             ) : (
-            <Button style={{ backgroundColor: 'black', color: 'white' }} disabled>
+            <Button className="submit-button"
+
+            style={{ marginTop : 20,
+              marginBottom : 20,
+              backgroundColor : 'black',
+              color: 'white',
+              marginRight: '10px',
+              border: '1px solid white',
+              transition: 'transform 0.3s ease',
+              borderRadius: '10px',
+              paddingTop:'4px',
+              paddingBottom: '4px',}} disabled>
                 Submit
             </Button>
             )}
