@@ -48,7 +48,7 @@ const DetailedQuestions: React.FC = () => {
   };
 
   return (
-    <div className="simplequestions">
+    <div className="detailedquestions">
       <video className="background-video" src={video} autoPlay loop muted playsInline />
       <div className="container"></div>
       <HeaderComponent />
@@ -64,6 +64,8 @@ const DetailedQuestions: React.FC = () => {
             rows={3}
             value={questions[currQIndex].answer}
             onChange={(e) => updateAnswer(e.target.value)}
+            className="detailed-textarea"
+            placeholder="Type your response here"
           />
         </Form.Group>
           <Button
@@ -99,7 +101,7 @@ const DetailedQuestions: React.FC = () => {
                   borderRadius: '10px',
                   paddingTop:'4px',
                   paddingBottom: '4px',}} 
-    >
+                  >
                 Submit
                 </Button>
             </Link>
