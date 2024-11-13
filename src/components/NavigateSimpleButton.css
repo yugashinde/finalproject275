@@ -15,7 +15,7 @@
 
   }
   .button-style:hover{
-    background-color: transparent;
+    background-color: #242410;
     color:white;
     border-color: rgb(239, 225, 200);
     box-shadow: 0 0 14px 3px rgb(239, 225, 200), 0 0 14px 3px rgb(239, 225, 200);

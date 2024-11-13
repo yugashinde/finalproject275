@@ -140,7 +140,7 @@ const SimpleQuestions: React.FC = () => {
                 <div className="popup-overlay">
                     <div className="popup-box">
                         <p>You've completed all questions!</p>
-                        <Button onClick={() => setShowPopup(false)}>Okay</Button>
+                        <Button  onClick={() => setShowPopup(false)}>Okay</Button>
                     </div>
                 </div>
             )}

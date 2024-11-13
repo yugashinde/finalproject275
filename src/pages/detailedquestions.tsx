@@ -87,7 +87,19 @@ const DetailedQuestions: React.FC = () => {
             </Button>
             {(nextPressedOnLastQuestion) ? (
             <Link to="/detailedresults">
-                <Button >
+                <Button className="submit-button"
+
+                style={{ marginTop : 20,
+                  marginBottom : 20,
+                  backgroundColor : 'black',
+                  color: 'white',
+                  marginRight: '10px',
+                  border: '1px solid white',
+                  transition: 'transform 0.3s ease',
+                  borderRadius: '10px',
+                  paddingTop:'4px',
+                  paddingBottom: '4px',}} 
+    >
                 Submit
                 </Button>
             </Link>
@@ -95,15 +107,15 @@ const DetailedQuestions: React.FC = () => {
             <Button className="submit-button"
 
             style={{ marginTop : 20,
-                marginBottom : 20,
-                backgroundColor : 'black',
-                color: 'white',
-                marginRight: '10px',
-                border: '1px solid white',
-                transition: 'transform 0.3s ease',
-                borderRadius: '10px',
-                paddingTop:'4px',
-                paddingBottom: '4px',}} disabled>
+              marginBottom : 20,
+              backgroundColor : 'black',
+              color: 'white',
+              marginRight: '10px',
+              border: '1px solid white',
+              transition: 'transform 0.3s ease',
+              borderRadius: '10px',
+              paddingTop:'4px',
+              paddingBottom: '4px',}} disabled>
                 Submit
             </Button>
             )}
