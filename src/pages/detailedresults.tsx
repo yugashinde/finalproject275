@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
-
+import './detailedquestions.css';
 const DetailedResults: React.FC = () => {
   return (
     <div className="detailedquestions">
