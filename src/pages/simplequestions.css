@@ -2,7 +2,9 @@
     color:white;
 }
 .simplequestions h1 {
-    color: white; 
+    color: tranparent; 
+    -webkit-text-stroke: 1.5px rgb(252, 249, 249);
+    
 }
 
 .simple-questions-wrapper {

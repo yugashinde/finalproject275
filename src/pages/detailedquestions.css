@@ -46,7 +46,7 @@
     position: relative;
     z-index: 1;
     color: transparent; 
-    -webkit-text-stroke: 1.5px Black;
+    -webkit-text-stroke: 1.5px rgb(252, 249, 249);
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: bold;
     text-align: center;
