@@ -1,9 +1,19 @@
+
+
 .simplequestions {
     color:white;
 }
 .simplequestions h1 {
     color: white; 
 }
+=======
+.simplequestions {
+    color:white;
+}
+.simplequestions h1 {
+    color: white; 
+}
+
 
 .simple-questions-wrapper {
     position: relative;
@@ -155,4 +165,3 @@
     font-size: 70px;
     margin-top:5%;
 }
-
