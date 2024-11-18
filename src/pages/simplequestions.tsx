@@ -11,10 +11,15 @@
   import { useNavigate } from 'react-router-dom';
   import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
   import axios from 'axios';
+  
 
+  
 
   const SimpleQuestions: React.FC = () => {
+    
+  
     const navigate = useNavigate();
+    
   //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
     
     const [questions, setQuestions] = useState<Question[]>([
@@ -58,6 +63,15 @@
         setShowPopup(false);
       }
     };
+
+    const getApiKey = () => {
+      const storedKey = localStorage.getItem('MYKEY');
+      if (storedKey) {
+        return JSON.parse(storedKey);
+      }
+      return ''; // Return an empty string if no key is found
+    };
+    
     const handleSubmit =  async () => {
 
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -65,12 +79,15 @@
       
       const answers = questions.map(q => q.answer);
       const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest a career based on the given information`
-      const apikey = localStorage.getItem("MYKEY")
+      const apikey = getApiKey();
+      localStorage.setItem('p', prompt);
+      
       // eslint-disable-next-line react-hooks/rules-of-hooks
       
       try{
         const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
+          'https://api.openai.com/v1/chat/completions/asst_uTRd9qqzQpImJcRai8ZMgPG2',
+          
           { 
             model : "gpt-4o",
             stream_options: {"include_usage": true},
@@ -80,8 +97,8 @@
             },
           {
             headers: {
-              Authorization: `Bearer ${apikey}`,
-              'Content-Type': 'application/json',
+              Authorization: `Bearer` + apikey,
+              'Content-Type'  : 'application/json',
             },
             timeout : 50000
           });
@@ -89,11 +106,12 @@
           const suggestedCareer = response.data.choices[0].message.content;
           console.log('AI suggested career: ' + suggestedCareer);
           setSuggestedCareer(suggestedCareer);
-          if(suggestedCareer === ""){
-            localStorage.setItem("career", "blank for now");
+          if(suggestedCareer !== ""){
+            localStorage.setItem("career", suggestedCareer); 
+            
           }
           else{
-            localStorage.setItem("career", suggestedCareer); 
+            localStorage.setItem("career", "blank for now");
           }
           
 
@@ -101,7 +119,7 @@
           let errorMessage: string;
 
   // Capture error details
-  if (error.response) {
+ if (error.response) {
     // When there is a response but an error status code
     errorMessage = `Error: ${error.response.data.error.message} (Status: ${error.response.status})`;
   } else if (error.request) {
@@ -110,11 +128,9 @@
   } else {
     // For other errors (e.g., network issues or unexpected errors)
     errorMessage = `Error: ${error.message}`;
-  }
-
-  console.log('Error fetching career suggestion', errorMessage);
-  // Optionally, set the error state for UI feedback if you have an error state variable
-  setError(errorMessage);
+  } 
+      console.log('Error fetching career suggestion', errorMessage);
+      setError(errorMessage);
         }
 
 
