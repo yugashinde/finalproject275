@@ -6,7 +6,7 @@ import './simpleresults.css'; // Ensure correct file import
 
 const BasicResults: React.FC = () => {
   const careerSuggestion = localStorage.getItem("career") || "No career suggestion available.";
-  const promptDetails = localStorage.getItem("p") || "No prompt data available.";
+  //const promptDetails = localStorage.getItem("p") || "No prompt data available.";
 
   return (
     <div className="simplequestions">
@@ -19,11 +19,6 @@ const BasicResults: React.FC = () => {
         <div className="results-box">
           <h2>Career Suggestion</h2>
           <p className="career-suggestion">{careerSuggestion}</p>
-        </div>
-
-        <div className="prompt-box">
-          <h2>Quiz Details</h2>
-          <p className="prompt-details">{promptDetails}</p>
         </div>
 
         <p className="footer-note">Thank you for completing the quiz! We hope this helps you explore your career path.</p>
