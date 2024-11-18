@@ -48,7 +48,10 @@ function App() {
     </Router>
     <Form>
         <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input" ></Form.Control>
+
+        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input"  ></Form.Control>
+          
+
         <br></br>
         <Button className="APISubmit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
