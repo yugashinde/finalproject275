@@ -2,6 +2,7 @@
   "name": "starter_helpi",
   "version": "0.1.0",
   "private": true,
+  
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -10,15 +11,18 @@
     "@types/node": "^16.18.76",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "axios": "^0.21.1",
     "bootstrap": "^5.3.2",
     "openai": "^4.26.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.3.1",
+    "react-native": "^0.76.2",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
+
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,7 +53,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.2.0"
+    
   },
-  "homepage" : "https://github.com/yugashinde/finalproject275.git"
   
+  "homepage": "https://github.com/yugashinde/finalproject275.git"
 }
