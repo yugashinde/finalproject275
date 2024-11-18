@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 const Header: React.FC = () => {
   return (
     <Link to="/">
-      <Button className="custom-button"> Home</Button>
+      <Button className="home-button"> Home</Button>
     </Link>
   );
 };

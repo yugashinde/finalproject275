@@ -1,3 +1,4 @@
+
 /* eslint-disable no-ex-assign */
 
   import HeaderComponent from '../components/HeaderComponent'
@@ -13,8 +14,12 @@
   import axios from 'axios';
   
 
-  const SimpleQuestions: React.FC = () => {
+
+
+const SimpleQuestions: React.FC = () => {
     
+//took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
+
   
     const navigate = useNavigate();
     
@@ -62,6 +67,7 @@
       }
     };
   
+
     
 
     const handleSubmit =  async () => {
