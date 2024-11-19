@@ -84,6 +84,7 @@ const SimpleQuestions: React.FC = () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
      
       try{
+        //add answer constAnswer=
         const response = await axios.post(
           'https://api.openai.com/v1/chat/completions',
          
@@ -92,6 +93,7 @@ const SimpleQuestions: React.FC = () => {
             stream_options: {"include_usage": true},
             messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
             {role: 'user', content : prompt}]
+            //add role user
            
             },
           {
@@ -149,7 +151,7 @@ const SimpleQuestions: React.FC = () => {
                 
                 <Form>
                 {question.options.map((Option, index) => (
-                        <div key = {index}>
+                        <div key = {index} className= "radio-buttons">
                             <label>
                                 <input
                                 type = "radio"
