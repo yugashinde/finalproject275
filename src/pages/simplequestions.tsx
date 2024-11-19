@@ -1,5 +1,4 @@
 
-/* eslint-disable no-ex-assign */
 
   import HeaderComponent from '../components/HeaderComponent'
   import React, { useState, useEffect} from 'react';
@@ -14,11 +13,10 @@
   import axios from 'axios';
   
 
+  
 
-
-const SimpleQuestions: React.FC = () => {
+  const SimpleQuestions: React.FC = () => {
     
-//took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
 
   
     const navigate = useNavigate();
@@ -71,23 +69,15 @@ const SimpleQuestions: React.FC = () => {
 
     
 
-    const handleSubmit =  async () => {
-
-
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-     
-     
-      useEffect(() => {
-        
-        if (!submitTriggered) return;
-        const fetchData = async ()=> {
+    const handleSubmit =  async() => {
+      // handles the axios post request and returns a formatted response to the user 
       const answers = questions.map(q => q.answer);
-      const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest a career based on the given information`
-      const apikey = localStorage.getItem("MYKEY");
-      
-      console.log("before parse" + apikey); 
-      
-      
+      const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest top career choice.  give me a brief reason at to why this career suits the user.  give me one example of a job title this career might have. provide 1 sentence description about what the job entails `
+      const _apikey = localStorage.getItem("MYKEY");
+      let apikey = "";
+      if (_apikey !== null) {
+        apikey = JSON.parse(_apikey);
+      }
       localStorage.setItem('p', prompt);
      
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -95,42 +85,52 @@ const SimpleQuestions: React.FC = () => {
       try{
         setLoading(true);
         const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-         
-          {
-            model : "gpt-4",
-            stream_options: {"include_usage": true},
-            messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
-            {role: 'user', content : prompt}]
-           
-            },
+          'https://api.openai.com/v1/chat/completions', {
+            model: 'gpt-4',  // Or another model, depending on your API configuration
+            max_tokens: 200,    // Adjust as necessary for response length
+            messages : [
+              {role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
+              {role: 'user', content : prompt}
+            ]
+            
+          },
+          
           {
             headers: {
-              Authorization: `Bearer + ${apikey}`,
-              'Content-Type'  : 'application/json',
+              'Authorization': `Bearer ${apikey}`,  // Authorization header with API key
+              'Content-Type': 'application/json',   // Ensure the request content type is JSON
             },
-            timeout : 50000
-          });
-          const suggestedCareer = response.data.choices[0].message.content;
-      
-      
-          localStorage.setItem("career", suggestedCareer || "blank for now");
-          setSuggestedCareer(suggestedCareer);
-          } catch (error: any) {
-      // Handle errors gracefully
-          setError(error.response?.data?.error?.message || error.message || 'Something went wrong.');
-          } finally {
-          setLoading(false); // Mark the API call as finished
-        }
-  };
-
-  // Call the fetchData function
-  fetchData();
-}, [questions, submitTriggered]);
-         
+            
+          }
+        );
+          setSuggestedCareer(response.data.choices[0].message.content);
           
+          console.log(response.data.choices[0].message.content);
+          localStorage.setItem("career", response.data.choices[0].message.content);
+          return suggestedCareer;
+         
+          } catch (err) {
+            console.error('Error communicating with API:', err);
+            setError('Sorry, something went wrong. Please try again later.');
+            return null;
+          } finally {
+            setLoading(false);
+          }
+
+    }
+    const submitAndNavigate = async () => {
+      //helper function : calls handleSubmit and navitage to simpleresults page 
+      const career = await handleSubmit();
+      if (career) {
+        navigate('/simpleresults', { state: { career: career } });
+      }
+    };
+
+
+         
+
     
-        return (
+  return (
           <div className="simplequestions"
           >
               <video className="background-video" src={video} autoPlay loop muted playsInline />
@@ -185,11 +185,7 @@ const SimpleQuestions: React.FC = () => {
                 </Button>
               {(nextPressedOnLastQuestion) ? (
                   <Button 
-                  onClick={async (e) => {
-                    //e.preventDefault(); // Prevent default Link behavior
-                    await handleSubmit(); // Wait for the career suggestion to be fetched
-                    navigate('/simpleresults', { state:  "suggestedCareer is not found yet"  }); // Navigate using React Router
-                  }}
+                  onClick={submitAndNavigate}
                   className="submit-button"
 
                   style={{ marginTop : 20,
@@ -238,11 +234,9 @@ const SimpleQuestions: React.FC = () => {
             </div>
         );
 
-
+      
   };
 
-}
 
 
   export default SimpleQuestions;
-
