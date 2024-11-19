@@ -2,7 +2,7 @@
 /* eslint-disable no-ex-assign */
 
   import HeaderComponent from '../components/HeaderComponent'
-  import React, { useState} from 'react';
+  import React, { useState, useEffect} from 'react';
   import { Question } from '../interfaces/Question';
   import {Form, Button} from 'react-bootstrap';
   import QuestionProgress from '../components/QuestionProgress';
@@ -39,8 +39,9 @@ const SimpleQuestions: React.FC = () => {
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
       const [suggestedCareer, setSuggestedCareer] = useState<string>("");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
+      const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
-      
+      const [loading, setLoading] = useState<boolean>(false);
     const updateAnswer= (selectedAnswer : string)=>{
       setQuestions(prevQuestions => {
           const updatedQuestions = [...prevQuestions];
@@ -76,19 +77,28 @@ const SimpleQuestions: React.FC = () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
      
      
+      useEffect(() => {
+        
+        if (!submitTriggered) return;
+        const fetchData = async ()=> {
       const answers = questions.map(q => q.answer);
       const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest a career based on the given information`
       const apikey = localStorage.getItem("MYKEY");
+      
+      console.log("before parse" + apikey); 
+      
+      
       localStorage.setItem('p', prompt);
      
       // eslint-disable-next-line react-hooks/rules-of-hooks
      
       try{
+        setLoading(true);
         const response = await axios.post(
           'https://api.openai.com/v1/chat/completions',
          
           {
-            model : "gpt-4o",
+            model : "gpt-4",
             stream_options: {"include_usage": true},
             messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
             {role: 'user', content : prompt}]
@@ -96,45 +106,30 @@ const SimpleQuestions: React.FC = () => {
             },
           {
             headers: {
-              Authorization: `Bearer ${apikey}`,
+              Authorization: `Bearer + ${apikey}`,
               'Content-Type'  : 'application/json',
             },
             timeout : 50000
           });
-         
           const suggestedCareer = response.data.choices[0].message.content;
-          console.log('AI suggested career: ' + suggestedCareer);
+      
+      
+          localStorage.setItem("career", suggestedCareer || "blank for now");
           setSuggestedCareer(suggestedCareer);
-          if(suggestedCareer !== ""){
-            localStorage.setItem("career", suggestedCareer);
-           
-          }
-          else{
-            localStorage.setItem("career", "blank for now");
-          }
-         
- 
- 
-        } catch (error:any) {
-          let errorMessage: string;
- 
- 
-  // Capture error details
- if (error.response) {
-    // When there is a response but an error status code
-    errorMessage = `Error: ${error.response.data.error.message} (Status: ${error.response.status})`;
-  } else if (error.request) {
-    // When no response was received from the server
-    errorMessage = 'Error: No response received from the server.';
-  } else {
-    // For other errors (e.g., network issues or unexpected errors)
-    errorMessage = `Error: ${error.message}`;
-  }
-      console.log('Error fetching career suggestion', errorMessage);
-      setError(errorMessage);
+          } catch (error: any) {
+      // Handle errors gracefully
+          setError(error.response?.data?.error?.message || error.message || 'Something went wrong.');
+          } finally {
+          setLoading(false); // Mark the API call as finished
         }
- 
-    };
+  };
+
+  // Call the fetchData function
+  fetchData();
+}, [questions, submitTriggered]);
+         
+          
+    
         return (
           <div className="simplequestions"
           >
@@ -189,7 +184,6 @@ const SimpleQuestions: React.FC = () => {
                     Next
                 </Button>
               {(nextPressedOnLastQuestion) ? (
-              
                   <Button 
                   onClick={async (e) => {
                     //e.preventDefault(); // Prevent default Link behavior
@@ -211,7 +205,6 @@ const SimpleQuestions: React.FC = () => {
                   >
                   Submit
                   </Button>
-              
               ) : (
               <Button 
               
@@ -246,9 +239,9 @@ const SimpleQuestions: React.FC = () => {
         );
 
 
-        
-
   };
+
+}
 
 
   export default SimpleQuestions;

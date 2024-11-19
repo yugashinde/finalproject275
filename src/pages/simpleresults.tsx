@@ -11,6 +11,7 @@ import './simpleresults.css'
 const BasicResults: React.FC = () => {
   let c = localStorage.getItem("career");
   let pr = localStorage.getItem("p");
+  let apik = localStorage.getItem("MYKEY");
   return (
       <div className="simplequestions">
         <video className="background-video" src={video} autoPlay loop muted playsInline />
@@ -18,7 +19,7 @@ const BasicResults: React.FC = () => {
         <HeaderComponent />
 
         <h1>Basic Results</h1>
-        <p>{c}</p>
+        <p>here the recommended career {c}</p>
         <p>{pr}</p>
 
         <p>Here is the basic result content.</p>
