@@ -1,15 +1,9 @@
 
-<<<<<<< HEAD
+
 .simplequestions {
     color:white;
-=======
-
-.simplequestions{
-    background-color: rgb(171, 127, 211);
-    margin-bottom: 200px;
-    
->>>>>>> e835470 (still not generating a response but api key is retrieved)
 }
+
 .simplequestions h1 {
     color: white; 
 }

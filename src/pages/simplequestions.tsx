@@ -14,10 +14,11 @@
   
 
   
+  
+
 
   const SimpleQuestions: React.FC = () => {
     
-
   
     const navigate = useNavigate();
     
@@ -35,12 +36,13 @@
       const [currQIndex, setCurrQuestionIndex] = useState(0);
       const [showPopup, setShowPopup] = useState(false);
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-      const [suggestedCareer, setSuggestedCareer] = useState<string>("");
+      const [suggestedCareer, setSuggestedCareer] = useState<string>("doctor");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
       const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
       const [loading, setLoading] = useState<boolean>(false);
-    const updateAnswer= (selectedAnswer : string)=>{
+   
+      const updateAnswer= (selectedAnswer : string)=>{
       setQuestions(prevQuestions => {
           const updatedQuestions = [...prevQuestions];
           if (updatedQuestions[currQIndex].answer === "") {
@@ -49,7 +51,7 @@
           updatedQuestions[currQIndex].answer = selectedAnswer;
           return updatedQuestions;
       });
-      
+
       if (answeredQuestionsCount + 1 === questions.length) {
           setShowPopup(true);
           setNextPressedOnLastQuestion(true);
@@ -57,7 +59,6 @@
       }; 
 
     const question= questions[currQIndex];
-    
     const handleNext = () => {
 
       if (currQIndex < questions.length - 1) {
@@ -79,9 +80,10 @@
         apikey = JSON.parse(_apikey);
       }
       localStorage.setItem('p', prompt);
-     
+    
       // eslint-disable-next-line react-hooks/rules-of-hooks
-     
+      localStorage.setItem("career", suggestedCareer);
+
       try{
         setLoading(true);
         const response = await axios.post(
