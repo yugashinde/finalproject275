@@ -89,8 +89,8 @@ const SimpleQuestions: React.FC = () => {
           'https://api.openai.com/v1/chat/completions',
          
           {
-            model : "gpt-4o",
-            stream_options: {"include_usage": true},
+            model : "gpt-4o", //keep it gpt-4
+            stream_options: {"include_usage": true}, //stream_options
             messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
             {role: 'user', content : prompt}]
             //add role user
