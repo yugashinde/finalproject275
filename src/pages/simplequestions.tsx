@@ -17,6 +17,8 @@
   
 
 
+    
+
   const SimpleQuestions: React.FC = () => {
     
   
