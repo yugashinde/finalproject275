@@ -111,12 +111,28 @@
         console.log(detailedResponse); // Log full response for debugging
         return detailedResponse; // Return full detailed response
          
-          } catch (err) {
-            console.error('Error communicating with API:', err);
-            setError('Sorry, something went wrong. Please try again later.');
-            return null;
+          } catch (error: any) {
+            let errorMessage: string;
+        
+            // Handle various error cases
+            if (error.response) {
+              // When there is a response but an error status code
+              errorMessage = `Error: ${
+                error.response.data.error.message || "Unknown error"
+              } (Status: ${error.response.status})`;
+            } else if (error.request) {
+              // When no response was received from the server
+              errorMessage = "Error: No response received from the server.";
+            } else {
+              // For other errors (e.g., network issues or unexpected errors)
+              errorMessage = `Error: ${error.message}`;
+            }
+        
+            console.error("Error fetching career suggestion:", errorMessage);
+            setError(errorMessage); // Update the error state to show the message to the user
+            return null; // Return null to indicate failure
           } finally {
-            setLoading(false);
+            setLoading(false); // End loading state
           }
 
     }
@@ -125,6 +141,8 @@
       const detailedResponse = await handleSubmit();
       if (detailedResponse) {
         navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
+      } else {
+        console.error("Failed to fetch career suggestion. Please try again.");
       }
     };
 
@@ -224,6 +242,13 @@
                   Submit
               </Button>
               )}
+
+            {error && (
+              <div style={{ color: "red", marginTop: "10px" }}>
+                <strong>{error}</strong>
+              </div>
+            )}
+
             </div>
             {showPopup && (
                   <div className="popup-overlay">
