@@ -5,7 +5,10 @@ import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 import './simpleresults.css'; // Ensure correct file import
 
 const BasicResults: React.FC = () => {
-  const careerSuggestion = localStorage.getItem("career") || "No career suggestion available.";
+  const careerSuggestion = localStorage.getItem("career");
+if (!careerSuggestion || careerSuggestion === "No suggestion available.") {
+  console.log("No career suggestion available or API failed.");
+}
   //const promptDetails = localStorage.getItem("p") || "No prompt data available.";
 
   return (

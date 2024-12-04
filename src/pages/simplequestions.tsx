@@ -77,10 +77,20 @@ const SimpleQuestions: React.FC = () => {
      
      
       const answers = questions.map(q => q.answer);
-      const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest a career based on the given information`
+      const promptParts = questions.map((q, index) => `${index + 1}. ${q.name} Answer: ${answers[index]}`);
+      const prompt = `Based on following answers to the career quiz : \n${promptParts.join("\n")}\n Please suggest a career based on the given information.`;
+      console.log("Generated Prompt:", prompt);
       const apikey = localStorage.getItem("MYKEY");
-      localStorage.setItem('p', prompt);
-     
+      console.log("Retrieved API Key:", apikey);
+
+      if (!apikey) {
+        setError("API key is missing. Please ensure it is stored in localStorage as 'MYKEY'.");
+        return;
+      }
+
+      localStorage.setItem("p", prompt);
+
+      
       // eslint-disable-next-line react-hooks/rules-of-hooks
      
       try{
@@ -103,26 +113,24 @@ const SimpleQuestions: React.FC = () => {
           });
          
           const suggestedCareer = response.data.choices[0].message.content;
-          console.log('AI suggested career: ' + suggestedCareer);
+          console.log("AI suggested career: ", suggestedCareer);
           setSuggestedCareer(suggestedCareer);
-          if(suggestedCareer !== ""){
-            localStorage.setItem("career", suggestedCareer);
-           
-          }
-          else{
-            localStorage.setItem("career", "blank for now");
-          }
-         
- 
- 
-        } catch (error:any) {
+          
+          localStorage.setItem("career", suggestedCareer || "No suggestion available.");
+          } catch (error: any) {
+          // Handle errors gracefully
           let errorMessage: string;
  
  
   // Capture error details
  if (error.response) {
+  if (error.response.status === 401) {
+    errorMessage = "Unauthorized: Please check your API key.";
+  } else {
+    errorMessage = `Error: ${error.response.data?.error?.message || "Unknown error"} (Status: ${error.response.status})`;
+  }
     // When there is a response but an error status code
-    errorMessage = `Error: ${error.response.data.error.message} (Status: ${error.response.status})`;
+    errorMessage = `Error: ${error.response.data.error.message||"Unknown error"} (Status: ${error.response.status})`;
   } else if (error.request) {
     // When no response was received from the server
     errorMessage = 'Error: No response received from the server.';
@@ -194,7 +202,7 @@ const SimpleQuestions: React.FC = () => {
                   onClick={async (e) => {
                     //e.preventDefault(); // Prevent default Link behavior
                     await handleSubmit(); // Wait for the career suggestion to be fetched
-                    navigate('/simpleresults', { state:  "suggestedCareer is not found yet"  }); // Navigate using React Router
+                    navigate('/simpleresults'); // Navigate using React Router
                   }}
                   className="submit-button"
 
