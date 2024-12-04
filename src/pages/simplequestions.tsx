@@ -84,16 +84,14 @@ const SimpleQuestions: React.FC = () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
      
       try{
-        //add answer constAnswer=
         const response = await axios.post(
           'https://api.openai.com/v1/chat/completions',
          
           {
-            model : "gpt-4o", //keep it gpt-4
+            model : "gpt-4o", 
             stream_options: {"include_usage": true}, //stream_options
             messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
             {role: 'user', content : prompt}]
-            //add role user
            
             },
           {

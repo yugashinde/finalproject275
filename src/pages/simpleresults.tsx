@@ -6,6 +6,10 @@ import './simplequestions';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 import './simpleresults.css'
 
+//create gpt folder
+//make gpt folder and take the functions from there into this page
+//send response one by one 
+//openai quick start
 
 
 const BasicResults: React.FC = () => {
