@@ -118,7 +118,7 @@ const DetailedQuestions: React.FC = () => {
       <video className="background-video" src={video} autoPlay loop muted playsInline />
       <div className="container"></div>
       <HeaderComponent />
-      <h1  className = "detailed-header">Detailed Question</h1>
+      <h1  className = "detailed-header">Detailed Assessment</h1>
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
 

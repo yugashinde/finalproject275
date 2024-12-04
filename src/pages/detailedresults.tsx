@@ -19,7 +19,7 @@ const DetailedResults: React.FC = () => {
         <video className="background-video" src={video} autoPlay loop muted playsInline />
         <div className="container"></div>
         <HeaderComponent />
-        <h1>Basic Quiz Results</h1>
+        <h1>Detailed Quiz Results</h1>
         <p> {career}</p>
         
   
