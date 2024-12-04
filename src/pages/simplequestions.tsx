@@ -38,7 +38,7 @@
       const [currQIndex, setCurrQuestionIndex] = useState(0);
       const [showPopup, setShowPopup] = useState(false);
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-      const [suggestedCareer, setSuggestedCareer] = useState<string>("doctor");
+      const [suggestedCareer, setSuggestedCareer] = useState<string>("");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
       const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
@@ -185,6 +185,8 @@
                   }>
                     Next
                 </Button>
+              
+              
               {(nextPressedOnLastQuestion) ? (
                   <Button 
                   onClick={submitAndNavigate}
