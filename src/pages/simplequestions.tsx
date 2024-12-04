@@ -11,7 +11,7 @@
   import { useNavigate } from 'react-router-dom';
   import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
   import axios from 'axios';
-  
+  import loadingGif from '../video/809.gif';
 
   
   
@@ -159,111 +159,115 @@
             <h1 className = "simple-header">Simple Question</h1>
             <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
             <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
-            <div>
-                <h2>{question.name}</h2>
-                
-                <Form>
-                {question.options.map((Option, index) => (
-                        <div key = {index}>
-                            <label>
-                                <input
-                                type = "radio"
-                                name = {question.name}
-                                value = {Option}
-                                checked={question.answer === Option}
-                                onChange={()=> updateAnswer(Option)}
-                                />
-                                {Option}
-                            </label>
-                        </div>
+             {/* Check if loading */}
+    {loading ? (
+      <div className="loading-container">
+        <img src={loadingGif} alt="Loading..." />
+        <p>Generating your career suggestions...</p>
+      </div>
+    ) : (
+      <div>
+        <h2>{question.name}</h2>
 
-                    ))}
-                      
-                    {question.answer && <p> Your answer has been recorded! </p> }
-                    
-                </Form>
-                
-                
-                <Button
-                  onClick={handleNext}
-                  disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
-                  className="next-button"
-                  style= {
-                      { marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',
-                      } 
-                  }>
-                    Next
-                </Button>
-              
-              
-              {(nextPressedOnLastQuestion) ? (
-                  <Button 
-                  onClick={submitAndNavigate}
-                  className="submit-button"
-
-                  style={{ marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',}}
-                  >
-                  Submit
-                  </Button>
-              ) : (
-              <Button 
-              
-              className="submit-button"
-              style= {
-                  { marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',}
-              } disabled>
-                  Submit
-              </Button>
-              )}
-
-            {error && (
-              <div style={{ color: "red", marginTop: "10px" }}>
-                <strong>{error}</strong>
-              </div>
-            )}
-
+        <Form>
+          {question.options.map((Option, index) => (
+            <div key={index}>
+              <label>
+                <input
+                  type="radio"
+                  name={question.name}
+                  value={Option}
+                  checked={question.answer === Option}
+                  onChange={() => updateAnswer(Option)}
+                />
+                {Option}
+              </label>
             </div>
-            {showPopup && (
-                  <div className="popup-overlay">
-                      <div className="popup-box">
-                          <p>You've completed all questions!</p>
-                          <Button  onClick={() => setShowPopup(false)}>Okay</Button>
-                      </div>
-                  </div>
-              )}
+          ))}
 
-            
-            </div>
-        );
+          {question.answer && <p>Your answer has been recorded!</p>}
+        </Form>
 
-      
+        <Button
+          onClick={handleNext}
+          disabled={
+            question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)
+          }
+          className="next-button"
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+            backgroundColor: "black",
+            color: "white",
+            marginRight: "10px",
+            border: "1px solid white",
+            transition: "transform 0.3s ease",
+            borderRadius: "10px",
+            paddingTop: "4px",
+            paddingBottom: "4px",
+          }}
+        >
+          Next
+        </Button>
+
+        {nextPressedOnLastQuestion ? (
+          <Button
+            onClick={submitAndNavigate}
+            className="submit-button"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+              color: "white",
+              marginRight: "10px",
+              border: "1px solid white",
+              transition: "transform 0.3s ease",
+              borderRadius: "10px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+          >
+            Submit
+          </Button>
+        ) : (
+          <Button
+            className="submit-button"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+              color: "white",
+              marginRight: "10px",
+              border: "1px solid white",
+              transition: "transform 0.3s ease",
+              borderRadius: "10px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+            disabled
+          >
+            Submit
+          </Button>
+        )}
+
+        {error && (
+          <div style={{ color: "red", marginTop: "10px" }}>
+            <strong>{error}</strong>
+          </div>
+        )}
+      </div>
+    )}
+
+    {showPopup && (
+      <div className="popup-overlay">
+        <div className="popup-box">
+          <p>You've completed all questions!</p>
+          <Button onClick={() => setShowPopup(false)}>Okay</Button>
+        </div>
+      </div>
+    )}
+  </div>
+);
   };
 
 
