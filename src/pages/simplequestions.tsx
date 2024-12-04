@@ -75,22 +75,6 @@
     const handleSubmit =  async() => {
       // handles the axios post request and returns a formatted response to the user 
       const answers = questions.map(q => q.answer);
-<<<<<<< HEAD
-      const promptParts = questions.map((q, index) => `${index + 1}. ${q.name} Answer: ${answers[index]}`);
-      const prompt = `Based on following answers to the career quiz : \n${promptParts.join("\n")}\n Please suggest a career based on the given information.`;
-      console.log("Generated Prompt:", prompt);
-      const apikey = localStorage.getItem("MYKEY");
-      console.log("Retrieved API Key:", apikey);
-
-      if (!apikey) {
-        setError("API key is missing. Please ensure it is stored in localStorage as 'MYKEY'.");
-        return;
-      }
-
-      localStorage.setItem("p", prompt);
-
-      
-=======
       const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest top career choice.  give me a brief reason at to why this career suits the user.  give me one example of a job title this career might have. provide 1 sentence description about what the job entails `
       const _apikey = localStorage.getItem("MYKEY");
       let apikey = "";
@@ -99,24 +83,12 @@
       }
       localStorage.setItem('p', prompt);
     
->>>>>>> b897eb9838b5db38063583480e5c7322bbf4b509
       // eslint-disable-next-line react-hooks/rules-of-hooks
       localStorage.setItem("career", suggestedCareer);
 
       try{
         setLoading(true);
         const response = await axios.post(
-<<<<<<< HEAD
-          'https://api.openai.com/v1/chat/completions',
-         
-          {
-            model : "gpt-4",
-            //stream_options: {"include_usage": true},
-            messages : [{role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
-            {role: 'user', content : prompt}]
-           
-            },
-=======
           'https://api.openai.com/v1/chat/completions', {
             model: 'gpt-4',  // Or another model, depending on your API configuration
             max_tokens: 200,    // Adjust as necessary for response length
@@ -127,47 +99,11 @@
             
           },
           
->>>>>>> b897eb9838b5db38063583480e5c7322bbf4b509
           {
             headers: {
               'Authorization': `Bearer ${apikey}`,  // Authorization header with API key
               'Content-Type': 'application/json',   // Ensure the request content type is JSON
             },
-<<<<<<< HEAD
-            timeout : 50000
-          });
-         
-          const suggestedCareer = response.data.choices[0].message.content;
-          console.log("AI suggested career: ", suggestedCareer);
-          setSuggestedCareer(suggestedCareer);
-          
-          localStorage.setItem("career", suggestedCareer || "No suggestion available.");
-          } catch (error: any) {
-          // Handle errors gracefully
-          let errorMessage: string;
- 
- 
-  // Capture error details
- if (error.response) {
-  if (error.response.status === 401) {
-    errorMessage = "Unauthorized: Please check your API key.";
-  } else {
-    errorMessage = `Error: ${error.response.data?.error?.message || "Unknown error"} (Status: ${error.response.status})`;
-  }
-    // When there is a response but an error status code
-    errorMessage = `Error: ${error.response.data.error.message||"Unknown error"} (Status: ${error.response.status})`;
-  } else if (error.request) {
-    // When no response was received from the server
-    errorMessage = 'Error: No response received from the server.';
-  } else {
-    // For other errors (e.g., network issues or unexpected errors)
-    errorMessage = `Error: ${error.message}`;
-  }
-      console.log('Error fetching career suggestion', errorMessage);
-      setError(errorMessage);
-        }
- 
-=======
             
           }
         );
@@ -192,7 +128,6 @@
       if (career) {
         navigate('/simpleresults', { state: { career: career } });
       }
->>>>>>> b897eb9838b5db38063583480e5c7322bbf4b509
     };
 
 
@@ -254,15 +189,7 @@
                 </Button>
               {(nextPressedOnLastQuestion) ? (
                   <Button 
-<<<<<<< HEAD
-                  onClick={async (e) => {
-                    //e.preventDefault(); // Prevent default Link behavior
-                    await handleSubmit(); // Wait for the career suggestion to be fetched
-                    navigate('/simpleresults'); // Navigate using React Router
-                  }}
-=======
                   onClick={submitAndNavigate}
->>>>>>> b897eb9838b5db38063583480e5c7322bbf4b509
                   className="submit-button"
 
                   style={{ marginTop : 20,
