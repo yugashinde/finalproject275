@@ -107,11 +107,9 @@
             
           }
         );
-          setSuggestedCareer(response.data.choices[0].message.content);
-          
-          console.log(response.data.choices[0].message.content);
-          localStorage.setItem("career", response.data.choices[0].message.content);
-          return suggestedCareer;
+        const detailedResponse = response.data.choices[0].message.content;
+        console.log(detailedResponse); // Log full response for debugging
+        return detailedResponse; // Return full detailed response
          
           } catch (err) {
             console.error('Error communicating with API:', err);
@@ -124,9 +122,9 @@
     }
     const submitAndNavigate = async () => {
       //helper function : calls handleSubmit and navitage to simpleresults page 
-      const career = await handleSubmit();
-      if (career) {
-        navigate('/simpleresults', { state: { career: career } });
+      const detailedResponse = await handleSubmit();
+      if (detailedResponse) {
+        navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
       }
     };
 
