@@ -1,32 +1,25 @@
 import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
-
 import './simplequestions';
-
+import { useLocation } from 'react-router-dom';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
-import './simpleresults.css'
-
-//create gpt folder
-//make gpt folder and take the functions from there into this page
-//send response one by one 
-//openai quick start
-
+import './simpleresults.css'; 
 
 const BasicResults: React.FC = () => {
-  let c = localStorage.getItem("career");
-  let pr = localStorage.getItem("p");
+
+
+  const location = useLocation();
+  const { detailedCareer } = location.state || {};
+
   return (
-      <div className="simplequestions">
-        <video className="background-video" src={video} autoPlay loop muted playsInline />
-        <div className="container"></div>
-        <HeaderComponent />
-
-        <h1>Basic Results</h1>
-        <p>{c}</p>
-        <p>{pr}</p>
-
-        <p>Here is the basic result content.</p>
-        </div>
+      <><div className="simplequestions">
+      <video className="background-video" src={video} autoPlay loop muted playsInline />
+      <div className="container"></div>
+      <HeaderComponent />
+      <h1>Basic Quiz Results</h1>
+      <p> {detailedCareer}</p>
+    </div><p className="footer-note">Thank you for completing the quiz! We hope this helps you explore your career path.</p></>
+    
   );
 };
 
