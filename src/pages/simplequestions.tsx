@@ -87,7 +87,6 @@
             ]
             
           },
-          
           {
             headers: {
               'Authorization': `Bearer ${apikey}`,  // Authorization header with API key
