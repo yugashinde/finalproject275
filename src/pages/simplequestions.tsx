@@ -1,11 +1,8 @@
-
-
   import HeaderComponent from '../components/HeaderComponent'
-  import React, { useState, useEffect} from 'react';
+  import React, { useState } from 'react';
   import { Question } from '../interfaces/Question';
   import {Form, Button} from 'react-bootstrap';
   import QuestionProgress from '../components/QuestionProgress';
-
   import Feedback from '../components/feedback'
   import './simplequestions.css';
   import { useNavigate } from 'react-router-dom';
@@ -13,15 +10,7 @@
   import axios from 'axios';
   import loadingGif from '../video/809.gif';
 
-  
-  
-
-
-    
-
   const SimpleQuestions: React.FC = () => {
-    
-  
     const navigate = useNavigate();
     
   //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
@@ -160,7 +149,7 @@
             <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
             <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
              {/* Check if loading */}
-    {loading ? (
+      {loading ? (
       <div className="loading-container">
         <img src={loadingGif} alt="Loading..." />
         <p>Generating your career suggestions...</p>
