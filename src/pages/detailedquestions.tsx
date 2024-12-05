@@ -5,12 +5,10 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
-import { Link } from 'react-router-dom';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import loadingGif from '../video/809.gif';
 
 const DetailedQuestions: React.FC = () => {
   const navigate = useNavigate();
@@ -26,12 +24,10 @@ const DetailedQuestions: React.FC = () => {
   ]);
   const [suggestedCareer, setSuggestedCareer] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
   const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
-
   const [error, setError] = useState<string>("");
 
   const handleNext = () => {
@@ -120,6 +116,7 @@ const DetailedQuestions: React.FC = () => {
           setLoading(false); // End loading state
         }
   }
+
   const submitAndNavigate = async () => {
     //helper function : calls handleSubmit and navitage to detailedresults page 
     const career = await handleSubmit();
@@ -138,7 +135,13 @@ const DetailedQuestions: React.FC = () => {
       <h1  className = "detailed-header">Detailed Assessment</h1>
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
-
+       {/* Check if loading */}
+      {loading ? (
+      <div className="loading-container">
+        <img src={loadingGif} alt="Loading..." />
+        <p>Generating your career suggestions...</p>
+      </div>
+    ) : (
       <Form>
         <Form.Group>
           <label>{questions[currQIndex].name}</label>
@@ -209,11 +212,12 @@ const DetailedQuestions: React.FC = () => {
               )}
         </Form>
 
+      )}
         {error && (
         <div style={{ color: "red", marginTop: "10px" }}>
           <strong>{error}</strong>
         </div>
-)}
+      )}
 
       {showPopup && (
       <div className="popup-overlay">
