@@ -22,7 +22,7 @@ const DetailedQuestions: React.FC = () => {
     { id: 6, name: "Imagine you’re on a deserted island with only one item of your choosing— what is it, and why did you select that tool?", options: [], answer: "" },
     { id: 7, name: "You’re given the chance to spend a week learning from any professional — who would it be, and what would you hope to gain from the experience?", options: [], answer: "" },
   ]);
-  const [suggestedCareer, setSuggestedCareer] = useState<string>("");
+ 
   const [loading, setLoading] = useState<boolean>(false);
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
@@ -54,17 +54,12 @@ const DetailedQuestions: React.FC = () => {
   const handleSubmit =  async() => {
     // handles the axios post request and returns a formatted response to the user 
     const answers = questions.map(q => q.answer);
-    const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest top career choice.  give me a brief reason at to why this career suits the user.  give me one example of a job title this career might have. provide 1 sentence description about what the job entails `
+    const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]}  Please suggest a career. The response should have 4 sections.  1)Top Career Choice,  2)Reason ( give me a brief reason at to why this career suits the user),  3)Example of Job Title in the top career choice , 4)description of the job title above `
     const _apikey = localStorage.getItem("MYKEY");
     let apikey = "";
     if (_apikey !== null) {
       apikey = JSON.parse(_apikey);
     }
-    localStorage.setItem('p', prompt);
-  
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    localStorage.setItem("career", suggestedCareer);
-
     try{
       setLoading(true);
       const response = await axios.post(
@@ -86,11 +81,14 @@ const DetailedQuestions: React.FC = () => {
           
         }
       );
-        setSuggestedCareer(response.data.choices[0].message.content);
-        
-        console.log(response.data.choices[0].message.content);
-        localStorage.setItem("career", response.data.choices[0].message.content);
-        return suggestedCareer;
+      const detailedCareer = response.data.choices[0].message.content; 
+      if(detailedCareer.includes("Career Choice") && detailedCareer.includes("Reason") && detailedCareer.includes("Job Title") && detailedCareer.includes("Description")){
+        console.log(detailedCareer); // Log full response for debugging
+        return detailedCareer;
+      }
+      else{
+         return "Try Again! Error getting data from OpenAI";
+      } 
        
         } catch (error: any) {
           let errorMessage: string;
@@ -144,7 +142,7 @@ const DetailedQuestions: React.FC = () => {
     ) : (
       <Form>
         <Form.Group>
-          <label>{questions[currQIndex].name}</label>
+          <h4>{questions[currQIndex].name}</h4>
           <Form.Control
             as="textarea"
             rows={3}
