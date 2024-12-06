@@ -51,6 +51,14 @@ h2{
   margin-top:2%;
 }
   
+.white-line{
+  height: 4px; /* Thickness of the line */
+  background-color: white; /* Color of the line */
+  position: fixed; /* Fixes the line at the top */
+  top: 0; /* Aligns it at the very top */
+  left: 0; /* Ensures it stretches from the left */
+  z-index: 1000; 
+}
 .logo{
   
 }

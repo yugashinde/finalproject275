@@ -6,11 +6,6 @@ import './detailedquestions';
 import { useLocation } from 'react-router-dom';
 
 const DetailedResults: React.FC = () => {
-  let c = localStorage.getItem("career");
-  let pr = localStorage.getItem("p");
-  let apik = localStorage.getItem("MYKEY");
-
-
   const location = useLocation();
   const { career } = location.state || {};
 
@@ -21,8 +16,7 @@ const DetailedResults: React.FC = () => {
         <HeaderComponent />
         <h1>Detailed Quiz Results</h1>
         <p> {career}</p>
-        
-  
+        <p className="footer-note">Thank you for completing the quiz! We hope this helps you explore your career path.</p>
         </div>
   );
 };

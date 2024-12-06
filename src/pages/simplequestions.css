@@ -164,3 +164,9 @@
     font-size: 70px;
     margin-top:5%;
 }
+
+.loading-container img {
+    width: 25px; 
+    height: 50px; 
+    margin-bottom: 10px; 
+  }

@@ -5,12 +5,10 @@ import QuestionProgress from '../components/QuestionProgress';
 import Feedback from '../components/feedback';
 import { Question } from '../interfaces/Question';
 import './detailedquestions.css';
-import { Link } from 'react-router-dom';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import loadingGif from '../video/809.gif';
 
 const DetailedQuestions: React.FC = () => {
   const navigate = useNavigate();
@@ -26,12 +24,10 @@ const DetailedQuestions: React.FC = () => {
   ]);
   const [suggestedCareer, setSuggestedCareer] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
   const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
-
   const [error, setError] = useState<string>("");
 
   const handleNext = () => {
@@ -96,20 +92,38 @@ const DetailedQuestions: React.FC = () => {
         localStorage.setItem("career", response.data.choices[0].message.content);
         return suggestedCareer;
        
-        } catch (err) {
-          console.error('Error communicating with API:', err);
-          setError('Sorry, something went wrong. Please try again later.');
-          return null;
+        } catch (error: any) {
+          let errorMessage: string;
+      
+          // Handle various error cases
+          if (error.response) {
+            // When there is a response but an error status code
+            errorMessage = `Error: ${
+              error.response.data.error.message || "Unknown error"
+            } (Status: ${error.response.status})`;
+          } else if (error.request) {
+            // When no response was received from the server
+            errorMessage = "Error: No response received from the server.";
+          } else {
+            // For other errors (e.g., network issues or unexpected errors)
+            errorMessage = `Error: ${error.message}`;
+          }
+      
+          console.error("Error fetching career suggestion:", errorMessage);
+          setError(errorMessage); // Update the error state to show the message to the user
+          return null; // Return null to indicate failure
         } finally {
-          setLoading(false);
+          setLoading(false); // End loading state
         }
-
   }
+
   const submitAndNavigate = async () => {
     //helper function : calls handleSubmit and navitage to detailedresults page 
     const career = await handleSubmit();
     if (career) {
       navigate('/detailedresults', { state: { career: career } });
+    } else {
+      console.error("Failed to fetch career suggestion. Please try again.");
     }
   };
 
@@ -121,7 +135,13 @@ const DetailedQuestions: React.FC = () => {
       <h1  className = "detailed-header">Detailed Assessment</h1>
       <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
       <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
-
+       {/* Check if loading */}
+      {loading ? (
+      <div className="loading-container">
+        <img src={loadingGif} alt="Loading..." />
+        <p>Generating your career suggestions...</p>
+      </div>
+    ) : (
       <Form>
         <Form.Group>
           <label>{questions[currQIndex].name}</label>
@@ -191,6 +211,13 @@ const DetailedQuestions: React.FC = () => {
               </Button>
               )}
         </Form>
+
+      )}
+        {error && (
+        <div style={{ color: "red", marginTop: "10px" }}>
+          <strong>{error}</strong>
+        </div>
+      )}
 
       {showPopup && (
       <div className="popup-overlay">

@@ -1,27 +1,16 @@
-
-
   import HeaderComponent from '../components/HeaderComponent'
-  import React, { useState, useEffect} from 'react';
+  import React, { useState } from 'react';
   import { Question } from '../interfaces/Question';
   import {Form, Button} from 'react-bootstrap';
   import QuestionProgress from '../components/QuestionProgress';
-
   import Feedback from '../components/feedback'
   import './simplequestions.css';
   import { useNavigate } from 'react-router-dom';
   import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
   import axios from 'axios';
-  
-
-  
-  
-
-
-    
+  import loadingGif from '../video/809.gif';
 
   const SimpleQuestions: React.FC = () => {
-    
-  
     const navigate = useNavigate();
     
   //took help from chat gpt to figure out how to store answers back into questions. I figured it would be easier later on when working with AI to be able to enter questions[] and have all answers right their organized with the questions
@@ -38,9 +27,9 @@
       const [currQIndex, setCurrQuestionIndex] = useState(0);
       const [showPopup, setShowPopup] = useState(false);
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-      const [suggestedCareer, setSuggestedCareer] = useState<string>("");
+      //const [suggestedCareer, setSuggestedCareer] = useState<string>("");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
-      const [submitTriggered, setSubmitTriggered] = useState(false);
+      //const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
       const [loading, setLoading] = useState<boolean>(false);
    
@@ -84,7 +73,7 @@
       localStorage.setItem('p', prompt);
     
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      localStorage.setItem("career", suggestedCareer);
+      //localStorage.setItem("career", suggestedCareer);
 
       try{
         setLoading(true);
@@ -111,12 +100,28 @@
         console.log(detailedResponse); // Log full response for debugging
         return detailedResponse; // Return full detailed response
          
-          } catch (err) {
-            console.error('Error communicating with API:', err);
-            setError('Sorry, something went wrong. Please try again later.');
-            return null;
+          } catch (error: any) {
+            let errorMessage: string;
+        
+            // Handle various error cases
+            if (error.response) {
+              // When there is a response but an error status code
+              errorMessage = `Error: ${
+                error.response.data.error.message || "Unknown error"
+              } (Status: ${error.response.status})`;
+            } else if (error.request) {
+              // When no response was received from the server
+              errorMessage = "Error: No response received from the server.";
+            } else {
+              // For other errors (e.g., network issues or unexpected errors)
+              errorMessage = `Error: ${error.message}`;
+            }
+        
+            console.error("Error fetching career suggestion:", errorMessage);
+            setError(errorMessage); // Update the error state to show the message to the user
+            return null; // Return null to indicate failure
           } finally {
-            setLoading(false);
+            setLoading(false); // End loading state
           }
 
     }
@@ -125,6 +130,8 @@
       const detailedResponse = await handleSubmit();
       if (detailedResponse) {
         navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
+      } else {
+        console.error("Failed to fetch career suggestion. Please try again.");
       }
     };
 
@@ -141,104 +148,115 @@
             <h1 className = "simple-header">Simple Question</h1>
             <QuestionProgress totalQuestions={questions.length} progress={answeredQuestionsCount} />
             <Feedback totalQuestions={questions.length} answeredQuestions={answeredQuestionsCount} />
-            <div>
-                <h2>{question.name}</h2>
-                
-                <Form>
-                {question.options.map((Option, index) => (
-                        <div key = {index} className= "radio-buttons">
-                            <label>
-                                <input
-                                type = "radio"
-                                name = {question.name}
-                                value = {Option}
-                                checked={question.answer === Option}
-                                onChange={()=> updateAnswer(Option)}
-                                />
-                                {Option}
-                            </label>
-                        </div>
+             {/* Check if loading */}
+      {loading ? (
+      <div className="loading-container">
+        <img src={loadingGif} alt="Loading..." />
+        <p>Generating your career suggestions...</p>
+      </div>
+    ) : (
+      <div>
+        <h2>{question.name}</h2>
 
-                    ))}
-                      
-                    {question.answer && <p> Your answer has been recorded! </p> }
-                    
-                </Form>
-                
-                
-                <Button
-                  onClick={handleNext}
-                  disabled= {question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)}
-                  className="next-button"
-                  style= {
-                      { marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',
-                      } 
-                  }>
-                    Next
-                </Button>
-              
-              
-              {(nextPressedOnLastQuestion) ? (
-                  <Button 
-                  onClick={submitAndNavigate}
-                  className="submit-button"
-
-                  style={{ marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',}}
-                  >
-                  Submit
-                  </Button>
-              ) : (
-              <Button 
-              
-              className="submit-button"
-              style= {
-                  { marginTop : 20,
-                      marginBottom : 20,
-                      backgroundColor : 'black',
-                      color: 'white',
-                      marginRight: '10px',
-                      border: '1px solid white',
-                      transition: 'transform 0.3s ease',
-                      borderRadius: '10px',
-                      paddingTop:'4px',
-                      paddingBottom: '4px',}
-              } disabled>
-                  Submit
-              </Button>
-              )}
+        <Form>
+          {question.options.map((Option, index) => (
+            <div key={index}>
+              <label>
+                <input
+                  type="radio"
+                  name={question.name}
+                  value={Option}
+                  checked={question.answer === Option}
+                  onChange={() => updateAnswer(Option)}
+                />
+                {Option}
+              </label>
             </div>
-            {showPopup && (
-                  <div className="popup-overlay">
-                      <div className="popup-box">
-                          <p>You've completed all questions!</p>
-                          <Button  onClick={() => setShowPopup(false)}>Okay</Button>
-                      </div>
-                  </div>
-              )}
+          ))}
 
-            
-            </div>
-        );
+          {question.answer && <p>Your answer has been recorded!</p>}
+        </Form>
 
-      
+        <Button
+          onClick={handleNext}
+          disabled={
+            question.answer === "" || (currQIndex === questions.length - 1 && nextPressedOnLastQuestion)
+          }
+          className="next-button"
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+            backgroundColor: "black",
+            color: "white",
+            marginRight: "10px",
+            border: "1px solid white",
+            transition: "transform 0.3s ease",
+            borderRadius: "10px",
+            paddingTop: "4px",
+            paddingBottom: "4px",
+          }}
+        >
+          Next
+        </Button>
+
+        {nextPressedOnLastQuestion ? (
+          <Button
+            onClick={submitAndNavigate}
+            className="submit-button"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+              color: "white",
+              marginRight: "10px",
+              border: "1px solid white",
+              transition: "transform 0.3s ease",
+              borderRadius: "10px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+          >
+            Submit
+          </Button>
+        ) : (
+          <Button
+            className="submit-button"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+              color: "white",
+              marginRight: "10px",
+              border: "1px solid white",
+              transition: "transform 0.3s ease",
+              borderRadius: "10px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+            disabled
+          >
+            Submit
+          </Button>
+        )}
+
+        {error && (
+          <div style={{ color: "red", marginTop: "10px" }}>
+            <strong>{error}</strong>
+          </div>
+        )}
+      </div>
+    )}
+
+    {showPopup && (
+      <div className="popup-overlay">
+        <div className="popup-box">
+          <p>You've completed all questions!</p>
+          <Button onClick={() => setShowPopup(false)}>Okay</Button>
+        </div>
+      </div>
+    )}
+  </div>
+);
   };
 
 
