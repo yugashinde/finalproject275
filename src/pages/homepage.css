@@ -31,7 +31,7 @@
   }
   .container {
     position: relative;
-    z-index: 1;  
+    z-index: 1; 
   }
 
 h2{
@@ -50,15 +50,11 @@ h2{
   padding: 6px 10px;
   margin-top:2%;
 }
-  
-.white-line{
-  height: 4px; /* Thickness of the line */
-  background-color: white; /* Color of the line */
-  position: fixed; /* Fixes the line at the top */
-  top: 0; /* Aligns it at the very top */
-  left: 0; /* Ensures it stretches from the left */
-  z-index: 1000; 
-}
+
 .logo{
-  
+  position:absolute;
+  top: 40px;
+  left:40px;
+  width:130px;
+  height:auto;
 }
