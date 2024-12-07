@@ -27,11 +27,10 @@
       const [currQIndex, setCurrQuestionIndex] = useState(0);
       const [showPopup, setShowPopup] = useState(false);
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-      const [suggestedCareer, setSuggestedCareer] = useState<string>("");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
-      const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
       const [loading, setLoading] = useState<boolean>(false);
+      
    
       const updateAnswer= (selectedAnswer : string)=>{
       setQuestions(prevQuestions => {
@@ -64,16 +63,14 @@
     const handleSubmit =  async() => {
       // handles the axios post request and returns a formatted response to the user 
       const answers = questions.map(q => q.answer);
-      const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest top career choice.  give me a brief reason at to why this career suits the user.  give me one example of a job title this career might have. provide 1 sentence description about what the job entails `
+      const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]}  Please suggest a career. The response should have 4 sections.  1)Top Career Choice,  2)Reason ( give me a brief reason at to why this career suits the user),  3)Example of Job Title in the top career choice , 4)description of the job title above`
+      console.log(prompt);
       const _apikey = localStorage.getItem("MYKEY");
       let apikey = "";
       if (_apikey !== null) {
         apikey = JSON.parse(_apikey);
       }
       localStorage.setItem('p', prompt);
-    
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      localStorage.setItem("career", suggestedCareer);
 
       try{
         setLoading(true);
@@ -87,7 +84,6 @@
             ]
             
           },
-          
           {
             headers: {
               'Authorization': `Bearer ${apikey}`,  // Authorization header with API key
@@ -96,9 +92,20 @@
             
           }
         );
-        const detailedResponse = response.data.choices[0].message.content;
-        console.log(detailedResponse); // Log full response for debugging
-        return detailedResponse; // Return full detailed response
+        //validating responses
+      
+        const simpleCareer = response.data.choices[0].message.content; 
+        
+        
+        if(simpleCareer.includes("Career Choice") && simpleCareer.includes("Reason") && simpleCareer.includes("Job Title") && simpleCareer.includes("Description")){
+          console.log(simpleCareer); // Log full response for debugging
+          return simpleCareer;
+        }
+        else{
+           return "Try Again! Error getting data from OpenAI";
+        } 
+        
+      
          
           } catch (error: any) {
             let errorMessage: string;
@@ -125,18 +132,18 @@
           }
 
     }
+    
+
+    
     const submitAndNavigate = async () => {
       //helper function : calls handleSubmit and navitage to simpleresults page 
-      const detailedResponse = await handleSubmit();
-      if (detailedResponse) {
-        navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
+      const formattedResults = await handleSubmit();
+      if (formattedResults) {
+        navigate('/simpleresults', { state: { simpleCareer: formattedResults } });
       } else {
         console.error("Failed to fetch career suggestion. Please try again.");
       }
     };
-
-
-         
 
     
   return (
@@ -156,7 +163,7 @@
       </div>
     ) : (
       <div>
-        <h2>{question.name}</h2>
+        <h4>{question.name}</h4>
 
         <Form>
           {question.options.map((Option, index) => (

@@ -12,6 +12,7 @@ const QuestionProgress: React.FC<QuestionProgressProps> = ({ totalQuestions, pro
   return (
     <div style={{ width: '100%', padding: '20px', display:'flex', justifyContent: 'center'}}>
       <ProgressBar now={progressPercentage} label={`${Math.round(progressPercentage)}%`} 
+      animated
       className="progress-bar-custom"/>
 
     </div>
