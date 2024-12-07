@@ -27,9 +27,9 @@
       const [currQIndex, setCurrQuestionIndex] = useState(0);
       const [showPopup, setShowPopup] = useState(false);
       const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
-      //const [suggestedCareer, setSuggestedCareer] = useState<string>("");
+      const [suggestedCareer, setSuggestedCareer] = useState<string>("");
       const [nextPressedOnLastQuestion, setNextPressedOnLastQuestion] = useState(false);
-      //const [submitTriggered, setSubmitTriggered] = useState(false);
+      // const [submitTriggered, setSubmitTriggered] = useState(false);
       const [error, setError] = useState<string>("");
       const [loading, setLoading] = useState<boolean>(false);
    
@@ -73,7 +73,7 @@
       localStorage.setItem('p', prompt);
     
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      //localStorage.setItem("career", suggestedCareer);
+      localStorage.setItem("career", suggestedCareer);
 
       try{
         setLoading(true);
@@ -129,6 +129,7 @@
       //helper function : calls handleSubmit and navitage to simpleresults page 
       const detailedResponse = await handleSubmit();
       if (detailedResponse) {
+        setSuggestedCareer(detailedResponse);
         navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
       } else {
         console.error("Failed to fetch career suggestion. Please try again.");

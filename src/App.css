@@ -48,29 +48,46 @@
   color:white;
 }
 .api-key-input{
-  
-  width:30%;
+  width:20%;
   height: 40px;
   background-color:black;
   margin: 0 auto;
+  
 }
+.api-key {
+  text-align:center;
+  width:100%;
+  margin-right: 100px;
+}
+
 .footer {
   background-color: #333;
   color: white;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
+  position:relative;
+
 }
 .footer-socials {
   display: flex;
   align-items: center;
+  position:absolute;
+  width:100%;
+  bottom:50px;
+  left: 155px;
 }
 .social-icon {
   width: 30px;
   height: 30px;
   margin: 0 10px;
   transition: transform 0.2s ease;
+}
+.follow-us{
+  text-align:left;
+  font-size: 18px;
+  position:absolute;
+  bottom: 80px;
+  left:200px;
+  
 }

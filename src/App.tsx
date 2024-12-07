@@ -52,6 +52,7 @@ function App() {
     </Router>
 
     <div className="footer">
+      
       <div className="footer-socials">
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1200px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook" className="social-icon" />
@@ -60,19 +61,23 @@ function App() {
           <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="social-icon" />
         </a>
         
-      
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="social-icon" />
+          </a>
+      </div>
+      <div className="api-key">
+        <Form>
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input"  ></Form.Control>
+          <br></br>
+          <Button className="APISubmit-Button" onClick={handleSubmit}>Submit</Button>
+        </Form>
+      </div>
+      <div className = "follow-us">
+        <p>Follow us</p>
       </div>
     </div>
-
-    <Form>
-        <Form.Label>API Key:</Form.Label>
-
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input"  ></Form.Control>
-          
-
-        <br></br>
-        <Button className="APISubmit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>
+    
     </div>
     </div>
   );
