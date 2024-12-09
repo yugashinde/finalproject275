@@ -19,7 +19,7 @@ const DetailedResults: React.FC = () => {
         <div className="container"></div>
         <HeaderComponent />
         <h1 className='results-header'>Detailed Quiz Results</h1>
-        
+         
         <div className="career-section">
           <h4>Recommended Career Choice</h4>
           <p>{sections[0].trim().replace("Top Career Choice:","" ) || 'Not provided'}</p>
