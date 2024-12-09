@@ -14,15 +14,15 @@ const DetailedQuestions: React.FC = () => {
   const navigate = useNavigate();
 
   const [questions, setQuestions] = useState<Question[]>([
-    { id: 1, name: "Imagine you could teach a class on any skill or topic — what would it be, and what makes you the expert?", options: [], answer: "" },
+    { id: 1, name: "What activities or subjects have always captured your interest, and why?", options: [], answer: "" },
     { id: 2, name: "If you were cast in a role for a team-based adventure, what character would you naturally become, and how would you lead the group to success?", options: [], answer: "" },
     { id: 3, name: "You’re given the power to instantly learn a new skill — what would it be?", options: [], answer: "" },
     { id: 4, name: "Describe your ideal workspace: what’s around you, and how does it help you stay in your creative flow?", options: [], answer: "" },
-    { id: 5, name: "If you could spend an entire day doing one activity without getting tired, what would it be, and why?", options: [], answer: "" },
+    { id: 5, name: "What aspects of a job are most important to you: salary, flexibility, creativity, stability, or impact?", options: [], answer: "" },
     { id: 6, name: "Imagine you’re on a deserted island with only one item of your choosing— what is it, and why did you select that tool?", options: [], answer: "" },
-    { id: 7, name: "You’re given the chance to spend a week learning from any professional — who would it be, and what would you hope to gain from the experience?", options: [], answer: "" },
+    { id: 7, name: "How do you define meaningful work?", options: [], answer: "" },
   ]);
-  const [suggestedCareer, setSuggestedCareer] = useState<string>("");
+ 
   const [loading, setLoading] = useState<boolean>(false);
   const [currQIndex, setCurrQIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
@@ -54,17 +54,12 @@ const DetailedQuestions: React.FC = () => {
   const handleSubmit =  async() => {
     // handles the axios post request and returns a formatted response to the user 
     const answers = questions.map(q => q.answer);
-    const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]} Please suggest top career choice.  give me a brief reason at to why this career suits the user.  give me one example of a job title this career might have. provide 1 sentence description about what the job entails `
+    const prompt = `Based on following answers to the career quiz : 1. ${questions[0].name} Answer: ${answers[0]} 2. ${questions[1].name} Answer : ${answers[1]} 3. ${questions[2].name} Answer : ${answers[2]} 4. ${questions[3].name} Answer : ${answers[3]}  5. ${questions[4].name} Answer : ${answers[4]} 6. ${questions[5].name} Answer : ${answers[5]} 7. ${questions[6].name} Answer : ${answers[6]}  Please suggest a career. The response should have 4 sections.  1)Top Career Choice,  2)Reason ( give me a brief reason at to why this career suits the user),  3)Example of Job Title in the top career choice , 4)description of the job title above `
     const _apikey = localStorage.getItem("MYKEY");
     let apikey = "";
     if (_apikey !== null) {
       apikey = JSON.parse(_apikey);
     }
-    localStorage.setItem('p', prompt);
-  
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    localStorage.setItem("career", suggestedCareer);
-
     try{
       setLoading(true);
       const response = await axios.post(
@@ -86,11 +81,14 @@ const DetailedQuestions: React.FC = () => {
           
         }
       );
-        setSuggestedCareer(response.data.choices[0].message.content);
-        
-        console.log(response.data.choices[0].message.content);
-        localStorage.setItem("career", response.data.choices[0].message.content);
-        return suggestedCareer;
+      const detailedCareer = response.data.choices[0].message.content; 
+      if(detailedCareer.includes("Career Choice") && detailedCareer.includes("Reason") && detailedCareer.includes("Job Title") && detailedCareer.includes("Description")){
+        console.log(detailedCareer); // Log full response for debugging
+        return detailedCareer;
+      }
+      else{
+         return "Try Again! Error getting data from OpenAI";
+      } 
        
         } catch (error: any) {
           let errorMessage: string;
@@ -108,7 +106,8 @@ const DetailedQuestions: React.FC = () => {
             // For other errors (e.g., network issues or unexpected errors)
             errorMessage = `Error: ${error.message}`;
           }
-      
+        
+          
           console.error("Error fetching career suggestion:", errorMessage);
           setError(errorMessage); // Update the error state to show the message to the user
           return null; // Return null to indicate failure
@@ -144,7 +143,7 @@ const DetailedQuestions: React.FC = () => {
     ) : (
       <Form>
         <Form.Group>
-          <label>{questions[currQIndex].name}</label>
+          <h4>{questions[currQIndex].name}</h4>
           <Form.Control
             as="textarea"
             rows={3}

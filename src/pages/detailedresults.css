@@ -2,12 +2,24 @@
     position: relative;
     z-index: 1;
     color: transparent; 
-    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    -webkit-text-stroke: 1.5px rgb(252, 249, 249);
     font-family: 'Roboto', Arial, sans-serif;
     font-weight: bold;
     text-align: center;
     font-size: 70px;
     margin-top:5%;
+}  
+
+
+.career-section{
+    text-align: center;
+    width:650px;
+    
+    resize: vertical;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif;
+    
 }
 
 .footer-note {
