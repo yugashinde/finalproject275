@@ -67,7 +67,7 @@
     margin-right: 0; /* Ensures no margin on the right */
     margin-top: 5px; 
     margin-bottom: 5px;
-}
+} 
 
 .radio-buttons label{
     display: flex; /* Aligns radio button and text horizontally     align-items: center; /* Centers text vertically with the radio button */     
