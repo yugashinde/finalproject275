@@ -51,7 +51,7 @@ const BasicResults: React.FC = () => {
       
     </div> <p className="footer-note">Thank you for completing the quiz! We hope this helps you explore your career path.</p></>
   );
-};
+}; 
 
 export default BasicResults;
  

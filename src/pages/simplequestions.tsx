@@ -82,7 +82,7 @@
               {role: 'system', content : 'you are a helpful career advisor that uses user answers to guide the user to a career best suited for them'},
               {role: 'user', content : prompt}
             ]  
-            
+             
           },
           {
             headers: {

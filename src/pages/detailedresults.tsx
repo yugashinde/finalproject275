@@ -13,7 +13,7 @@ const DetailedResults: React.FC = () => {
   .split(/\d\)\s/)  // Split on the pattern of '1)', '2)', etc.
   .filter(Boolean);
 
-  return (
+  return ( 
       <div className="detailedquestions">
         <video className="background-video" src={video} autoPlay loop muted playsInline />
         <div className="container"></div>
