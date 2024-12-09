@@ -8,6 +8,7 @@ import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 
 
 
+
 const HomePage: React.FC = () => {
   return (  
     <div className='homepage'>
