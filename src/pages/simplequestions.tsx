@@ -129,7 +129,6 @@
       //helper function : calls handleSubmit and navitage to simpleresults page 
       const detailedResponse = await handleSubmit();
       if (detailedResponse) {
-        setSuggestedCareer(detailedResponse);
         navigate('/simpleresults', { state: { detailedCareer: detailedResponse } });
       } else {
         console.error("Failed to fetch career suggestion. Please try again.");

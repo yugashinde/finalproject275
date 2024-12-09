@@ -61,14 +61,16 @@
 }
 
 .footer {
-  background-color: #333;
+  border-top: 2px solid white;
+  background-color: transparent;
   color: white;
   padding: 20px;
   justify-content: center;
   align-items: center;
-  position:relative;
-
+  position:relative; 
 }
+
+
 .footer-socials {
   display: flex;
   align-items: center;
@@ -90,4 +92,17 @@
   bottom: 80px;
   left:200px;
   
+}
+
+.footer-links{
+  position: absolute;
+  bottom: 70px; 
+  left: 75%; 
+}
+.logo{
+  position:absolute;
+  top: 40px;
+  left:100px;
+  width:130px;
+  height:auto;
 }
