@@ -163,11 +163,11 @@
       </div>
     ) : (
       <div>
-        <h4>{question.name}</h4>
+        <h4>{questions[currQIndex].name}</h4>
 
-        <Form>
+        <Form >
           {question.options.map((Option, index) => (
-            <div key={index}>
+            <div key={index} className = "radio-buttons">
               <label>
                 <input
                   type="radio"
@@ -257,7 +257,7 @@
     {showPopup && (
       <div className="popup-overlay">
         <div className="popup-box">
-          <p>You've completed all questions!</p>
+          <p> You've completed all questions!To get your results click submit! </p>
           <Button onClick={() => setShowPopup(false)}>Okay</Button>
         </div>
       </div>
