@@ -107,6 +107,7 @@ const DetailedQuestions: React.FC = () => {
             errorMessage = `Error: ${error.message}`;
           }
         
+          
           console.error("Error fetching career suggestion:", errorMessage);
           setError(errorMessage); // Update the error state to show the message to the user
           return null; // Return null to indicate failure

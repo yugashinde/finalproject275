@@ -257,7 +257,7 @@
     {showPopup && (
       <div className="popup-overlay">
         <div className="popup-box">
-          <p> You've completed all questions!To get your results click submit! </p>
+          <p> You've completed all questions! To get your results click submit! </p>
           <Button onClick={() => setShowPopup(false)}>Okay</Button>
         </div>
       </div>

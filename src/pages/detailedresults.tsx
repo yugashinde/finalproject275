@@ -35,6 +35,7 @@ const DetailedResults: React.FC = () => {
           <p>{sections[2].trim().replace("Example of Job Title in the top career choice: ","" )|| 'Not provided'}</p>
         </div>
 
+
         <div className="career-section">
           <h5>Description of the Job Title</h5>
           <p>{sections[3].trim().replace("Description of the Job Title Above:","" ) || 'Not provided'}</p>
