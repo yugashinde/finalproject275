@@ -7,6 +7,7 @@ import SimpleQuestions from './pages/simplequestions';
 import SimpleResults from './pages/simpleresults';
 import DetailedResults from './pages/detailedresults';
 import HomePage from './pages/homepage';
+import logo from './images/shell-vector-icon-logo-illustration-600nw-2151966943.png';
 
 
 
@@ -36,9 +37,8 @@ function App() {
 
 
   return (
-
     <div className="App">
-          <div>
+      <div>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -48,17 +48,49 @@ function App() {
           <Route path="/simpleresults" element={<SimpleResults />} />
         </Routes>
     </Router>
-    <Form>
-        <Form.Label>API Key:</Form.Label>
 
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input"  ></Form.Control>
-          
+    <img src={logo} alt="CareerCoast Logo" className="logo"/>
+    <div className="footer">
+      <div className="footer-socials">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1200px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook" className="social-icon" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="social-icon" />
+        </a>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="social-icon" />
+        </a>
+      </div>
 
-        <br></br>
-        <Button className="APISubmit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>
+      <div className="api-key">
+        <Form>
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} className="api-key-input"  ></Form.Control>
+          <br></br>
+          <Button className="APISubmit-Button" onClick={handleSubmit}>Submit</Button>
+        </Form>
+      </div>
+
+      <div className = "follow-us">
+        <p>Follow us</p>
+      </div>
+    
+      <div className="footer-links">
+        <a href="/about-us" className="footer-link">About Us</a>
+        <span className="footer-separator"> | </span>
+        <a href="/faqs" className="footer-link">FAQs</a>
+        <span className="footer-separator"> | </span>
+        <a href="/contact" className="footer-link">Contact Us</a>
+      </div>
+  
+      
     </div>
+    
+
+    
     </div>
+  </div>
   );
 
 }

@@ -49,9 +49,61 @@
   color:white;
 }
 .api-key-input{
-  
-  width:30%;
+  width:20%;
   height: 40px;
   background-color:black;
   margin: 0 auto;
+  
+}
+.api-key {
+  text-align:center;
+  width:100%;
+  margin-right: 100px;
+}
+
+.footer {
+  border-top: 2px solid white;
+  background-color: transparent;
+  color: white;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  position:relative; 
+}
+
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  position:absolute;
+  width:100%;
+  bottom:50px;
+  left: 155px;
+}
+.social-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  transition: transform 0.2s ease;
+}
+.follow-us{
+  text-align:left;
+  font-size: 18px;
+  position:absolute;
+  bottom: 80px;
+  left:200px;
+  
+}
+
+.footer-links{
+  position: absolute;
+  bottom: 70px; 
+  left: 75%; 
+}
+.logo{
+  position:absolute;
+  top: 40px;
+  left:100px;
+  width:130px;
+  height:auto;
 }
