@@ -9,7 +9,7 @@ import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 
 
 const HomePage: React.FC = () => {
-  return ( 
+  return (  
     <div className='homepage'>
       <video className="background-video" src={video} autoPlay loop muted playsInline />
       <div className="container"></div>
