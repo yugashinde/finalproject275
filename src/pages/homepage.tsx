@@ -7,11 +7,8 @@ import './homepage.css';
 import video from '../video/4782596-uhd_3840_2160_30fps.mp4';
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 2d602cec13ad5ad06d0ed097d4cb8ab63758175d
 const HomePage: React.FC = () => {
   return (  
     <div className='homepage'>
