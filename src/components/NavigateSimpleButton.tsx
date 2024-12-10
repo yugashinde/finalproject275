@@ -20,5 +20,4 @@ const NavigateSimpleButton: React.FC = () => {
     </div>
   );
 };
-
 export default NavigateSimpleButton;
