@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import './NavigateSimpleButton.css';
 
 const NavigateSimpleButton: React.FC = () => {
+
+  
   return (
     <div className="NavigateSimpleButton">
       <h2>Simple Questions Quiz</h2>

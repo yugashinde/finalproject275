@@ -49,6 +49,9 @@ function App() {
         </Routes>
     </Router>
 
+
+
+
     <img src={logo} alt="CareerCoast Logo" className="logo"/>
     <div className="footer">
       <div className="footer-socials">
@@ -83,7 +86,10 @@ function App() {
         <span className="footer-separator"> | </span>
         <a href="/contact" className="footer-link">Contact Us</a>
       </div>
-  
+
+
+
+
       
     </div>
     
