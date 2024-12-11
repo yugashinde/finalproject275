@@ -61,6 +61,8 @@
   margin-right: 100px;
 }
 
+
+
 .footer {
   border-top: 2px solid white;
   background-color: transparent;
@@ -72,6 +74,8 @@
 }
 
 
+
+
 .footer-socials {
   display: flex;
   align-items: center;
@@ -80,12 +84,17 @@
   bottom:50px;
   left: 155px;
 }
+
+
+
 .social-icon {
   width: 30px;
   height: 30px;
   margin: 0 10px;
   transition: transform 0.2s ease;
 }
+
+
 .follow-us{
   text-align:left;
   font-size: 18px;
@@ -95,11 +104,16 @@
   
 }
 
+
+
+
 .footer-links{
   position: absolute;
   bottom: 70px; 
   left: 75%; 
 }
+
+
 .logo {
   position: absolute;
   top: 1%;
